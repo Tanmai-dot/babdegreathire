@@ -134,21 +134,6 @@ View Project <i className="fas fa-arrow-right ml-2"></i>
 View All Projects
 </button>
 </a>
-<button
-onClick={() => {
-const projects = document.querySelectorAll('.grid-cols-3 > div');
-projects.forEach(project => {
-const projectBtn = project.querySelector('button');
-if (projectBtn) {
-projectBtn.click();
-}
-});
-}}
-className="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition duration-300 !rounded-button whitespace-nowrap cursor-pointer flex items-center justify-center mx-auto gap-2"
->
-<i className="fas fa-paper-plane"></i>
-Send All Projects
-</button>
 </div>
 </div>
 </section>
