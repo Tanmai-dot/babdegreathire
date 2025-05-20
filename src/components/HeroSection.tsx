@@ -17,8 +17,8 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-transparent"></div>
         <div className="container mx-auto px-6 relative z-10 h-full flex items-center">
           <div className="max-w-2xl text-white">
-            <h1 className="text-5xl font-bold mb-4 leading-tight">
-              Your Digital Success Partner
+            <h1 className="text-4xl font-bold mb-4 leading-tight">
+              GREATHIRE BY BABDE PVT.LTD
             </h1>
             <p className="text-xl mb-8">
               Transforming businesses across industries with cutting-edge
