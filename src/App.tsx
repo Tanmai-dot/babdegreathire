@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './App.css';
 const App: React.FC = () => {
 const [activeTab, setActiveTab] = useState('all');
 const handleTabChange = (tab: string) => {
@@ -27,18 +28,15 @@ setActiveTab(tab);
 <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300 !rounded-button whitespace-nowrap cursor-pointer">
 Get a Quote
 </button>
-<button className="md:hidden text-gray-700 focus:outline-none cursor-pointer">
-<i className="fas fa-bars text-xl"></i>
+<button
+  className="md:hidden text-gray-700 focus:outline-none cursor-pointer"
+  aria-label="Open navigation menu"
+>
+  <i className="fas fa-bars text-xl"></i>
 </button>
 </div>
 </header>
-{/* Hero Section */}
-<section className="pt-24 relative overflow-hidden" style={{
-backgroundImage: `url('https://readdy.ai/api/search-image?query=Modern%20tech%20office%20with%20gradient%20blue%20background%2C%20soft%20lighting%2C%20minimalist%20design%2C%20abstract%20digital%20elements%2C%20professional%20workspace%20atmosphere%2C%20high-tech%20environment%20with%20subtle%20technology%20elements%2C%20clean%20and%20professional%20aesthetic&width=1440&height=600&seq=1&orientation=landscape')`,
-backgroundSize: 'cover',
-backgroundPosition: 'center',
-height: '600px'
-}}>
+<section className="pt-24 relative overflow-hidden hero-section">
 <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-transparent"></div>
 <div className="container mx-auto px-6 relative z-10 h-full flex items-center">
 <div className="max-w-2xl text-white">
