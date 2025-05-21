@@ -40,7 +40,7 @@ const industries = [
 ];
 
 const Industries: React.FC = () => (
-    <section className="py-20 bg-white">
+    <section id='industries' className="py-20 bg-white">
         <div className="container mx-auto px-6">
             <div className="text-center mb-16">
                 <h2 className="text-3xl font-bold text-gray-800 mb-4">

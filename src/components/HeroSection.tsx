@@ -6,6 +6,7 @@ const HeroSection = () => {
     <>
     {/* Hero Section */}
       <section
+      id='home'
         className="pt-24 relative overflow-hidden"
         style={{
           backgroundImage: "url('https://readdy.ai/api/search-image?query=Modern%20tech%20office%20with%20gradient%20blue%20background%2C%20soft%20lighting%2C%20minimalist%20design%2C%20abstract%20digital%20elements%2C%20professional%20workspace%20atmosphere%2C%20high-tech%20environment%20with%20subtle%20technology%20elements%2C%20clean%20and%20professional%20aesthetic&width=1440&height=600&seq=1&orientation=landscape')",
