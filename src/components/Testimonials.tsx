@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Font Awesome
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import CardBgImg from '../assets/wall.jpg'; // Adjust path if needed
+import WhiteElegantImg from '../assets/white Elegant.png'; // Import the new image
 
 interface Review {
     text: string;
@@ -17,7 +18,7 @@ interface TestimonialsProps {
 const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
-    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
     // Start/stop auto-transition based on isPaused
     React.useEffect(() => {
@@ -68,7 +69,7 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                 {/* Cards */}
                 <div
                     className="relative w-full max-w-5xl flex justify-center items-center"
-                    style={{ minHeight: 299 }} // decreased height
+                    style={{ minHeight: 350 }} // decreased height
                 >
                     {reviews.map((review, index) => {
                         const isActive = index === activeIndex;
@@ -76,6 +77,9 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                         const isRight = index === (activeIndex + 1) % reviews.length;
 
                         if (!(isActive || isLeft || isRight)) return null;
+
+                        // Check for Lavanya S. and render image instead
+                        const isLavanya = review.author === "Lavanya S.";
 
                         return (
                             <div
@@ -93,35 +97,49 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                                     rounded-xl shadow-md
                                 `}
                                 style={{
-                                    width: isActive ? "300px" : "260px",
-                                    height: isActive ? "300px" : "260px", // reduced to 296px
+                                    width: isActive ? "350px" : "260px",
+                                    height: isActive ? "350px" : "260px",
                                     pointerEvents: isActive ? "auto" : "none",
+                                    backgroundImage: `url(${CardBgImg})`,
+                                    backgroundSize: "cover",
+                                    backgroundPosition: "center",
+                                    backgroundRepeat: "no-repeat",
                                 }}
                                 onMouseEnter={isActive ? () => setIsPaused(true) : undefined}
                                 onMouseLeave={isActive ? () => setIsPaused(false) : undefined}
                             >
                                 <div className="w-full h-full rounded-xl p-6 flex flex-col justify-between">
-                                    <div>
-                                        <div className="text-blue-500 text-xl opacity-30 mb-2">
-                                            <i className="fas fa-quote-left"></i>
-                                        </div>
-                                        <div className="flex justify-start mb-4">
-                                            {[...Array(5)].map((_, i) => (
-                                                <i
-                                                    key={i}
-                                                    className="fas fa-star text-yellow-400 mr-1"
-                                                ></i>
-                                            ))}
-                                        </div>
-                                        <p className="text-gray-600 italic text-sm text-justify">
-                                            "{review.text}"
-                                        </p>
-                                    </div>
-                                    <div className="mt-2 text-right">
-                                        <h4 className="font-medium text-gray-800 text-sm">
-                                            {review.author}
-                                        </h4>
-                                    </div>
+                                    {isLavanya ? (
+                                        <img
+                                            src={WhiteElegantImg}
+                                            alt="Elegant White"
+                                            className="w-full h-full object-contain rounded-xl"
+                                        />
+                                    ) : (
+                                        <>
+                                            <div>
+                                                <div className="text-blue-500 text-xl opacity-30 mb-2">
+                                                    <i className="fas fa-quote-left"></i>
+                                                </div>
+                                                <div className="flex justify-start mb-4">
+                                                    {[...Array(5)].map((_, i) => (
+                                                        <i
+                                                            key={i}
+                                                            className="fas fa-star text-yellow-400 mr-1"
+                                                        ></i>
+                                                    ))}
+                                                </div>
+                                                <p className="text-gray-600 italic text-sm text-justify">
+                                                    "{review.text}"
+                                                </p>
+                                            </div>
+                                            <div className="mt-2 text-right">
+                                                <h4 className="font-medium text-gray-800 text-sm">
+                                                    {review.author}
+                                                </h4>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         );
