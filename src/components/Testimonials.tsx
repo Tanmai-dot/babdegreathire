@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Font Awesome
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -16,6 +16,32 @@ interface TestimonialsProps {
 
 const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+    // Start/stop auto-transition based on isPaused
+    React.useEffect(() => {
+        if (!isPaused) {
+            startAutoTransition();
+        } else {
+            stopAutoTransition();
+        }
+        return () => stopAutoTransition();
+    }, [reviews.length, isPaused]);
+
+    const startAutoTransition = () => {
+        stopAutoTransition();
+        intervalRef.current = setInterval(() => {
+            setActiveIndex((prevIndex) => (prevIndex + 1) % reviews.length);
+        }, 4000); // 4 seconds
+    };
+
+    const stopAutoTransition = () => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        }
+    };
 
     const handleNext = () => {
         setActiveIndex((prevIndex) => (prevIndex + 1) % reviews.length);
@@ -40,30 +66,41 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                 </button>
 
                 {/* Cards */}
-                <div className="relative w-full max-w-5xl flex justify-center items-center">
+                <div
+                    className="relative w-full max-w-5xl flex justify-center items-center"
+                    style={{ minHeight: 299 }} // decreased height
+                >
                     {reviews.map((review, index) => {
                         const isActive = index === activeIndex;
                         const isLeft = index === (activeIndex - 1 + reviews.length) % reviews.length;
                         const isRight = index === (activeIndex + 1) % reviews.length;
 
+                        if (!(isActive || isLeft || isRight)) return null;
+
                         return (
                             <div
                                 key={index}
-                                className={`absolute transition-transform duration-500 ease-in-out ${
-                                    isActive
-                                        ? "transform scale-100 z-20"
+                                className={`
+                                    absolute
+                                    transition-all duration-[3000ms] ease-in-out
+                                    ${isActive
+                                        ? "z-20 scale-105 bg-white opacity-100 left-1/2 -translate-x-1/2 cursor-pointer"
                                         : isLeft
-                                        ? "transform scale-90 -translate-x-80 z-10 opacity-80"
+                                        ? "z-10 scale-90 bg-gray-100 opacity-60 blur-sm left-1/4 -translate-x-1/2"
                                         : isRight
-                                        ? "transform scale-90 translate-x-80 z-10 opacity-80"
-                                        : "opacity-0 pointer-events-none"
-                                }`}
+                                        ? "z-10 scale-90 bg-gray-100 opacity-60 blur-sm left-3/4 -translate-x-1/2"
+                                        : "hidden"}
+                                    rounded-xl shadow-md
+                                `}
                                 style={{
-                                    width: isActive ? "350px" : "300px",
-                                    height: isActive ? "350px" : "300px",
+                                    width: isActive ? "300px" : "260px",
+                                    height: isActive ? "300px" : "260px", // reduced to 296px
+                                    pointerEvents: isActive ? "auto" : "none",
                                 }}
+                                onMouseEnter={isActive ? () => setIsPaused(true) : undefined}
+                                onMouseLeave={isActive ? () => setIsPaused(false) : undefined}
                             >
-                                <div className="w-full h-full bg-gradient-to-b from-white to-gray-100 rounded-xl p-6 shadow-lg flex flex-col justify-between">
+                                <div className="w-full h-full rounded-xl p-6 flex flex-col justify-between">
                                     <div>
                                         <div className="text-blue-500 text-xl opacity-30 mb-2">
                                             <i className="fas fa-quote-left"></i>
@@ -217,20 +254,28 @@ const teamStories: Review[] = [
     },
 ];
 
-const TestimonialsPage: React.FC = () => (
-    <section className="py-20 bg-blue-50">
-        <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">What Our Clients Say</h2>
-                <p className="text-gray-600 max-w-3xl mx-auto">
-                    Hear from our satisfied clients about their experience working with GREATHIRE.
-                </p>
-            </div>
+const TestimonialsPage: React.FC = () => {
+    return (
+        <section className="py-20 bg-blue-50">
+            <div className="container mx-auto px-6">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl font-bold text-gray-800 mb-4">What Our Clients Say</h2>
+                    <p className="text-gray-600 max-w-3xl mx-auto">
+                        Hear from our satisfied clients about their experience working with GREATHIRE.
+                    </p>
+                </div>
 
-            <TestimonialsCarousel reviews={reviews} title="Client Reviews" />
-            <TestimonialsCarousel reviews={teamStories} title="Our Team Stories" />
-        </div>
-    </section>
-);
+                {/* Client Reviews Carousel */}
+                <TestimonialsCarousel reviews={reviews} title="Client Reviews" />
+
+                {/* Team Stories Carousel below */}
+                <div className="mt-20">
+                    <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">Our Team Stories</h2>
+                    <TestimonialsCarousel reviews={teamStories} title="" />
+                </div>
+            </div>
+        </section>
+    );
+};
 
 export default TestimonialsPage;
