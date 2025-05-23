@@ -2,8 +2,7 @@ import React, { useState, useRef } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Font Awesome
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import CardBgImg from '../assets/wall.jpg'; // Adjust path if needed
-import WhiteElegantImg from '../assets/white Elegant.png'; // Import the new image
+import CardBgImg from '../assets/White and Blue.png'; // Adjust path if needed
 
 interface Review {
     text: string;
@@ -71,15 +70,19 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                     className="relative w-full max-w-5xl flex justify-center items-center"
                     style={{ minHeight: 350 }} // decreased height
                 >
+                    {/* Huge 3D quote icon above the cards */}
+                    <div className="absolute -top-14 left-1/3 -translate-x-1/119 z-30 pointer-events-none">
+                        <span className="text-blue-800 text-[200px] md:text-[70px] opacity-50 drop-shadow-2xl blur-[1px]">
+                            <i className="fas fa-quote-left"></i>
+                        </span>
+                    </div>
+
                     {reviews.map((review, index) => {
                         const isActive = index === activeIndex;
                         const isLeft = index === (activeIndex - 1 + reviews.length) % reviews.length;
                         const isRight = index === (activeIndex + 1) % reviews.length;
 
                         if (!(isActive || isLeft || isRight)) return null;
-
-                        // Check for Lavanya S. and render image instead
-                        const isLavanya = review.author === "Lavanya S.";
 
                         return (
                             <div
@@ -88,7 +91,7 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                                     absolute
                                     transition-all duration-[3000ms] ease-in-out
                                     ${isActive
-                                        ? "z-20 scale-105 bg-white opacity-100 left-1/2 -translate-x-1/2 cursor-pointer"
+                                        ? "z-20 scale-105 bg-white opacity-120 left-1/2 -translate-x-1/2 cursor-pointer"
                                         : isLeft
                                         ? "z-10 scale-90 bg-gray-100 opacity-60 blur-sm left-1/4 -translate-x-1/2"
                                         : isRight
@@ -108,38 +111,36 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                                 onMouseEnter={isActive ? () => setIsPaused(true) : undefined}
                                 onMouseLeave={isActive ? () => setIsPaused(false) : undefined}
                             >
-                                <div className="w-full h-full rounded-xl p-6 flex flex-col justify-between">
-                                    {isLavanya ? (
-                                        <img
-                                            src={WhiteElegantImg}
-                                            alt="Elegant White"
-                                            className="w-full h-full object-contain rounded-xl"
-                                        />
-                                    ) : (
-                                        <>
-                                            <div>
-                                                <div className="text-blue-500 text-xl opacity-30 mb-2">
-                                                    <i className="fas fa-quote-left"></i>
-                                                </div>
-                                                <div className="flex justify-start mb-4">
-                                                    {[...Array(5)].map((_, i) => (
-                                                        <i
-                                                            key={i}
-                                                            className="fas fa-star text-yellow-400 mr-1"
-                                                        ></i>
-                                                    ))}
-                                                </div>
-                                                <p className="text-gray-600 italic text-sm text-justify">
-                                                    "{review.text}"
-                                                </p>
-                                            </div>
-                                            <div className="mt-2 text-right">
-                                                <h4 className="font-medium text-gray-800 text-sm">
-                                                    {review.author}
-                                                </h4>
-                                            </div>
-                                        </>
-                                    )}
+                                {/* White overlay for lightening the background */}
+                                <div
+                                    className="absolute inset-0 rounded-xl"
+                                    style={{
+                                        background: "rgba(255,255,255,0.30)", // adjust opacity for desired lightness
+                                        zIndex: 1,
+                                    }}
+                                />
+                                <div className="w-full h-full rounded-xl p-6 flex flex-col justify-between relative" style={{ zIndex: 2 }}>
+                                    <div>
+                                        {/* <div className="text-blue-800 text-2xl opacity-90 mb-2">
+                                            <i className="fas fa-quote-left"></i>
+                                        </div> */}
+                                        <div className="flex justify-end mb-4">
+                                            {[...Array(5)].map((_, i) => (
+                                                <i
+                                                    key={i}
+                                                    className="fas fa-star text-yellow-400 mr-1"
+                                                ></i>
+                                            ))}
+                                        </div>
+                                        <p className="text-gray-100 font-bold italic text-lg text-justify">
+                                            "{review.text}"
+                                        </p>
+                                    </div>
+                                    <div className="mt-2 text-right">
+                                        <h4 className="font-medium text-gray-300 text-sm">
+                                            {review.author}
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
                         );
