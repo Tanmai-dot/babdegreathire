@@ -123,7 +123,7 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                                 />
                                 <div className="w-full h-full rounded-xl p-6 flex flex-col justify-between relative" style={{ zIndex: 2 }}>
                                     <div>
-                                        {/* <div className="text-blue-800 text-2xl opacity-90 mb-2">
+                                        {/* <div className="text-blue-800 text-2xl opacity-100mb-2">
                                             <i className="fas fa-quote-left"></i>
                                         </div> */}
                                         <div className="flex justify-end mb-4">

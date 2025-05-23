@@ -20,7 +20,7 @@ const About = () => (
                         GREATHIRE is a leading digital solutions provider specializing in AI-powered software development, cloud architecture, web and mobile applications, and comprehensive digital marketing services across multiple industries.
                     </p>
                     <p className="text-gray-600 mb-6">
-                        Founded in 2020, we've grown to become a trusted partner for businesses looking to leverage cutting-edge technology for growth and innovation. Our team of experienced AI engineers, cloud architects, full-stack developers, and digital strategists work collaboratively to deliver exceptional results powered by the latest technologies including AWS and artificial intelligence.
+                        Founded in 2017, we've grown to become a trusted partner for businesses looking to leverage cutting-edge technology for growth and innovation. Our team of experienced AI engineers, cloud architects, full-stack developers, and digital strategists work collaboratively to deliver exceptional results powered by the latest technologies including AWS and artificial intelligence.
                     </p>
                     <div className="grid grid-cols-2 gap-6 mb-8">
                         {stats.map(({ value, label }) => (
@@ -60,12 +60,8 @@ const About = () => (
                             "GREATHIRE transformed our business with their innovative solutions and exceptional service."
                         </p>
                         <div className="mt-4 flex items-center">
-                            <img
-                                src="https://readdy.ai/api/search-image?query=Professional%20business%20portrait%20of%20a%20middle-aged%20executive%20with%20confident%20expression%2C%20neutral%20background%2C%20corporate%20headshot%20style%2C%20business%20attire%2C%20clean%20professional%20lighting&width=50&height=50&seq=10&orientation=squarish"
-                                alt="Client"
-                                className="w-10 h-10 rounded-full mr-3"
-                            />
-                            <div>
+                            
+                         <div>
                                 <p className="font-medium text-gray-800">Sarah Johnson</p>
                                 <p className="text-sm text-gray-600">CEO, TechVision Inc.</p>
                             </div>
