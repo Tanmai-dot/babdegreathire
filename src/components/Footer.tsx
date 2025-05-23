@@ -116,20 +116,20 @@ const Footer = () => {
                             <li className="flex items-start">
                                 <i className="fas fa-map-marker-alt text-blue-400 mr-3 mt-1"></i>
                                 <span className="text-gray-400">
-                                    Doc bhavan kondapur Hyderabad
+                                    5th Floor,Doc,Vasantha Bhavana Rd,Whitefields Kondapur,Hyderabad Telangana 500006
                                 </span>
                             </li>
                             <li className="flex items-center">
                                 <i className="fas fa-phone-alt text-blue-400 mr-3"></i>
-                                <span className="text-gray-400">+1 (555) 123-4567</span>
+                                <span className="text-gray-400">+91-8328192093</span>
                             </li>
                             <li className="flex items-center">
                                 <i className="fas fa-envelope text-blue-400 mr-3"></i>
-                                <span className="text-gray-400">info@greathire.com</span>
+                                <span className="text-gray-400">hr@babde.tech</span>
                             </li>
                             <li className="flex items-center">
                                 <i className="fas fa-clock text-blue-400 mr-3"></i>
-                                <span className="text-gray-400">Mon-Fri: 9AM - 6PM</span>
+                                <span className="text-gray-400">Monday-Saturday: 24/7 </span>
                             </li>
                         </ul>
                     </div>

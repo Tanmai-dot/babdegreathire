@@ -18,7 +18,7 @@ const Contact = () => (
                             </div>
                             <div>
                                 <h3 className="text-lg font-medium text-gray-800 mb-1">Our Office</h3>
-                                <p className="text-gray-600">123 Tech Park, Silicon Valley, CA 94025, USA</p>
+                                <p className="text-gray-600">5th Floor,Doc,Vasantha Bhavana Rd,Whitefields,Kondapur,Hyderabad,Telangana-500006</p>
                             </div>
                         </div>
                         {/* Phone */}
@@ -28,7 +28,7 @@ const Contact = () => (
                             </div>
                             <div>
                                 <h3 className="text-lg font-medium text-gray-800 mb-1">Phone</h3>
-                                <p className="text-gray-600">+1 (555) 123-4567</p>
+                                <p className="text-gray-600">+91-8328192093</p>
                             </div>
                         </div>
                         {/* Email */}
@@ -38,7 +38,7 @@ const Contact = () => (
                             </div>
                             <div>
                                 <h3 className="text-lg font-medium text-gray-800 mb-1">Email</h3>
-                                <p className="text-gray-600">info@greathire.com</p>
+                                <p className="text-gray-600">hr@babde.tech</p>
                             </div>
                         </div>
                     </div>
@@ -46,20 +46,8 @@ const Contact = () => (
                     <div className="mt-8">
                         <h3 className="text-lg font-medium text-gray-800 mb-4">Follow Us</h3>
                         <div className="flex space-x-4">
-                            <a
-                                href="#"
-                                className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition duration-300 cursor-pointer"
-                                aria-label="Facebook"
-                            >
-                                <i className="fab fa-facebook-f"></i>
-                            </a>
-                            <a
-                                href="#"
-                                className="w-10 h-10 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500 transition duration-300 cursor-pointer"
-                                aria-label="Twitter"
-                            >
-                                <i className="fab fa-twitter"></i>
-                            </a>
+                            
+                    
                             <a
                                 href="#"
                                 className="w-10 h-10 bg-blue-700 text-white rounded-full flex items-center justify-center hover:bg-blue-800 transition duration-300 cursor-pointer"
@@ -101,7 +89,7 @@ const Contact = () => (
                                     type="email"
                                     id="email"
                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
-                                    placeholder="john@example.com"
+                                    placeholder="hr@babde.tech"
                                 />
                             </div>
                         </div>
