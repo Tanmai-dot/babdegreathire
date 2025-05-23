@@ -19,6 +19,8 @@ const getCategoryStyles = (category: string) => {
       return { bg: 'bg-yellow-100', text: 'text-yellow-800', label: 'Real Estate' };
     case 'education':
       return { bg: 'bg-blue-100', text: 'text-blue-800', label: 'Education' };
+    case 'digitalmarketing':
+      return { bg: 'bg-pink-100', text: 'text-pink-800', label: 'Digital Marketing' };
     default:
       return { bg: 'bg-gray-100', text: 'text-gray-800', label: 'Other' };
   }
@@ -174,6 +176,45 @@ const projects = [
     date: 'February 2024',
     image: 'https://readdy.ai/api/search-image?query=Adaptive%2520learning%2520platform%2520interface%2520with%2520personalized%2520education%2520content%252C%2520AI%2520learning%2520path%2520visualization%252C%2520educational%2520system%2520with%2520clean%2520professional%2520design%252C%2520blue%2520education%2520themed%2520elements&width=600&height=400&seq=46&orientation=landscape',
   },
+   {
+    title: 'SEO Optimization Platform',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.',
+    category: 'digitalmarketing',
+    date: 'May 2025',
+    image: 'https://your-image-url.com/seo-platform.jpg',
+    testimonial: {
+      name: '',
+      position: '',
+      image: 'https://your-image-url.com/jane.jpg',
+      quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    },
+  },
+  {
+    title: 'Social Media Campaign Manager',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.',
+    category: 'digitalmarketing',
+    date: 'April 2025',
+    image: 'https://your-image-url.com/social-media.jpg',
+    testimonial: {
+      name: '',
+      position: '',
+      image: 'https://your-image-url.com/alex.jpg',
+      quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    },
+  },
+  {
+    title: 'Email Marketing Automation',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.',
+    category: 'digitalmarketing',
+    date: 'March 2025',
+    image: 'https://your-image-url.com/email-marketing.jpg',
+    testimonial: {
+      name: '',
+      position: '',
+      image: 'https://your-image-url.com/priya.jpg',
+      quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    },
+  },
 ];
 
 const TABS = [
@@ -182,6 +223,7 @@ const TABS = [
   { key: 'healthcare', label: 'Healthcare' },
   { key: 'realestate', label: 'Real Estate' },
   { key: 'education', label: 'Education' },
+  { key: 'digitalmarketing', label: 'Digital Marketing' },
 ];
 
 
