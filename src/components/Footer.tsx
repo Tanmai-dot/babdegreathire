@@ -116,7 +116,7 @@ const Footer = () => {
                             <li className="flex items-start">
                                 <i className="fas fa-map-marker-alt text-blue-400 mr-3 mt-1"></i>
                                 <span className="text-gray-400">
-                                    123 Tech Park, Silicon Valley, CA 94025, USA
+                                    Doc bhavan kondapur Hyderabad
                                 </span>
                             </li>
                             <li className="flex items-center">
