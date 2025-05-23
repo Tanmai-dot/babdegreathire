@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const industries = [
     {
         title: 'Information Technology',
@@ -11,10 +12,10 @@ const industries = [
             'Custom software solutions, system integration, and IT consulting for businesses of all sizes.',
     },
     {
-        title: 'Healthcare',
-        icon: 'fas fa-hospital',
+        title: 'Digital Marketing',
+        icon: 'fas fa-bullhorn',
         image:
-            'https://readdy.ai/api/search-image?query=Modern%20hospital%20reception%20area%20with%20digital%20displays%2C%20clean%20medical%20environment%2C%20healthcare%20professionals%20using%20technology%2C%20blue%20and%20white%20color%20scheme%2C%20professional%20medical%20setting%20with%20technological%20elements&width=400&height=200&seq=3&orientation=landscape',
+            'https://cdn.pixabay.com/photo/2021/10/18/19/34/social-media-6721926_1280.png',
         alt: 'Healthcare',
         description:
             'Hospital management systems, patient portals, and medical practice websites with HIPAA compliance.',
@@ -23,16 +24,16 @@ const industries = [
         title: 'Real Estate',
         icon: 'fas fa-building',
         image:
-            'https://readdy.ai/api/search-image?query=Modern%20real%20estate%20office%20with%20digital%20property%20displays%2C%20agents%20using%20technology%20to%20showcase%20listings%2C%20clean%20professional%20environment%20with%20blue%20accent%20lighting%2C%20contemporary%20workspace%20with%20property%20models&width=400&height=200&seq=4&orientation=landscape',
+            'https://cdn.pixabay.com/photo/2023/10/06/18/33/ai-generated-8298890_1280.jpg',
         alt: 'Real Estate',
         description:
             'Property management platforms, listing websites, and virtual tour integration for real estate businesses.',
     },
     {
-        title: 'Education',
-        icon: 'fas fa-graduation-cap',
+        title: 'Cyber Security',
+        icon: 'fas fa-shield-alt',
         image:
-            'https://readdy.ai/api/search-image?query=Modern%20educational%20facility%20with%20digital%20learning%20environment%2C%20students%20using%20technology%2C%20clean%20campus%20setting%20with%20blue%20accent%20lighting%2C%20contemporary%20learning%20space%20with%20technological%20elements&width=400&height=200&seq=5&orientation=landscape',
+            'https://cdn.pixabay.com/photo/2020/05/21/05/28/security-5199236_1280.jpg',
         alt: 'Education',
         description:
             'Hostel management systems, campus solutions, and educational institution websites.',
