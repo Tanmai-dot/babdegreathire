@@ -61,6 +61,8 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                 <button
                     className="absolute left-[-2%] top-1/2 transform -translate-y-1/2 rounded-full p-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300"
                     onClick={handlePrev}
+                    title="Previous testimonial"
+                    aria-label="Previous testimonial"
                 >
                     <i className="fas fa-chevron-left text-black opacity-70 text-4xl"></i>
                 </button>
@@ -146,11 +148,11 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                         );
                     })}
                 </div>
-
-                {/* Right Arrow */}
                 <button
                     className="absolute right-[-2%] top-1/2 transform -translate-y-1/2 rounded-full p-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300"
                     onClick={handleNext}
+                    title="Next testimonial"
+                    aria-label="Next testimonial"
                 >
                     <i className="fas fa-chevron-right text-black opacity-70 text-4xl"></i>
                 </button>
