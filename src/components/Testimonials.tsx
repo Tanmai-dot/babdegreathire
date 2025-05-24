@@ -73,12 +73,7 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                     className="relative w-screen flex justify-center items-center overflow-visible"
                     style={{ minHeight: width >= 1024 ? 450 : width >= 640 ? 400 : 320 }}
                 >
-                    {/* Responsive quote icon */}
-                    <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
-                        <span className="text-blue-800 text-[60px] sm:text-[100px] md:text-[160px] lg:text-[200px] opacity-50 drop-shadow-2xl blur-[1px]">
-                            <i className="fas fa-quote-left"></i>
-                        </span>
-                    </div>
+                    {/* Quote icon removed */}
                     {reviews.map((review, index) => {
                         const total = reviews.length;
                         const offset = (index - activeIndex + total) % total;
