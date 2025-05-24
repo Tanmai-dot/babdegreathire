@@ -92,43 +92,49 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                             position: "absolute",
                             transition: "left 0.7s cubic-bezier(0.4,0,0.2,1), width 0.7s cubic-bezier(0.4,0,0.2,1), height 0.7s cubic-bezier(0.4,0,0.2,1)",
                             pointerEvents: "none",
-                            width: "420px",
-                            height: "420px",
                             left: "50%",
                             transform: "translateX(-50%)",
+                            // Responsive width/height defaults
+                            width: "90vw",
+                            maxWidth: "420px",
+                            height: "60vw",
+                            maxHeight: "420px",
                         };
 
+                        // Responsive card sizing
+                        if (window.innerWidth >= 1024) { // lg+
+                            style.width = "380px";
+                            style.height = "380px";
+                        } else if (window.innerWidth >= 640) { // sm+
+                            style.width = "320px";
+                            style.height = "320px";
+                        } else {
+                            style.width = "90vw";
+                            style.height = "60vw";
+                        }
+
+                        // Responsive left positions
                         switch (offset) {
                             case 0: // Active (center)
                                 positionClass = "z-30 scale-105 opacity-100";
                                 style.left = "50%";
                                 style.pointerEvents = "auto";
-                                style.width = "380px";   // Decreased from 520px
-                                style.height = "380px";  // Decreased from 520px
                                 break;
                             case 1: // Right-near
                                 positionClass = "z-20 scale-95 opacity-80 blur-[1px]";
-                                style.left = "75%";
-                                style.width = "340px";
-                                style.height = "340px";
+                                style.left = window.innerWidth < 640 ? "70%" : "75%";
                                 break;
                             case 2: // Right-far
                                 positionClass = "z-10 scale-90 opacity-50 blur-sm";
-                                style.left = "92%";
-                                style.width = "270px";
-                                style.height = "270px";
+                                style.left = window.innerWidth < 640 ? "90%" : "92%";
                                 break;
                             case total - 1: // Left-near
                                 positionClass = "z-20 scale-95 opacity-80 blur-[1px]";
-                                style.left = "25%";
-                                style.width = "340px";
-                                style.height = "340px";
+                                style.left = window.innerWidth < 640 ? "30%" : "25%";
                                 break;
                             case total - 2: // Left-far
                                 positionClass = "z-10 scale-90 opacity-50 blur-sm";
-                                style.left = "8%";
-                                style.width = "270px";
-                                style.height = "270px";
+                                style.left = window.innerWidth < 640 ? "10%" : "8%";
                                 break;
                             default:
                                 return null;
@@ -143,13 +149,13 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                                 onMouseLeave={offset === 0 ? () => setIsPaused(false) : undefined}
                             >
                                 <div className="absolute inset-0 rounded-xl" style={{ background: "rgba(255,255,255,0.3)", zIndex: 1 }} />
-                                <div className="w-full h-full rounded-xl p-4 flex flex-col justify-between relative space-y-2" style={{ zIndex: 2 }}>
+                                <div className="w-full h-full rounded-xl p-2 sm:p-4 flex flex-col justify-between relative space-y-2" style={{ zIndex: 2 }}>
                                     <div className="flex justify-end mb-2">
                                         {[...Array(5)].map((_, i) => (
                                             <i key={i} className="fas fa-star text-yellow-400 mr-1"></i>
                                         ))}
                                     </div>
-                                    <p className="block w-full text-gray-100 font-bold italic text-base leading-tight mb-1">
+                                    <p className="block w-full text-gray-100 font-bold italic text-sm sm:text-base leading-tight mb-1">
                                         "{review.text}"
                                     </p>
                                     <div className="mt-1 text-right">
