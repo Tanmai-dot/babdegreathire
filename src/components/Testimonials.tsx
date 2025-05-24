@@ -18,6 +18,7 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
     const [activeIndex, setActiveIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+    const [width] = useWindowSize(); // <-- add this line
 
     // Start/stop auto-transition based on isPaused
     React.useEffect(() => {
@@ -56,7 +57,7 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
     return (
         <div className="mb-20 relative">
             <h3 className="text-2xl font-bold text-gray-800 text-center mb-8">{title}</h3>
-            <div className="flex justify-center items-center relative h-[400px] overflow-visible group">
+            <div className="flex justify-center items-center relative h-[320px] sm:h-[400px] md:h-[450px] overflow-visible group">
                 {/* Left Arrow */}
                 <button
                     className="absolute left-[-2%] top-1/2 transform -translate-y-1/2 rounded-full p-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300
@@ -70,15 +71,14 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                 {/* Cards */}
                 <div
                     className="relative w-screen flex justify-center items-center overflow-visible"
-                    style={{ minHeight: 450 }} // increased height for larger cards
+                    style={{ minHeight: width >= 1024 ? 450 : width >= 640 ? 400 : 320 }}
                 >
-                    {/* Huge 3D quote icon above the cards */}
-                    <div className="absolute -top-14 left-1/3 -translate-x-1/119 z-30 pointer-events-none">
-                        <span className="text-blue-800 text-[200px] md:text-[70px] opacity-50 drop-shadow-2xl blur-[1px]">
+                    {/* Responsive quote icon */}
+                    <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+                        <span className="text-blue-800 text-[60px] sm:text-[100px] md:text-[160px] lg:text-[200px] opacity-50 drop-shadow-2xl blur-[1px]">
                             <i className="fas fa-quote-left"></i>
                         </span>
                     </div>
-
                     {reviews.map((review, index) => {
                         const total = reviews.length;
                         const offset = (index - activeIndex + total) % total;
@@ -94,24 +94,11 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                             pointerEvents: "none",
                             left: "50%",
                             transform: "translateX(-50%)",
-                            // Responsive width/height defaults
-                            width: "90vw",
+                            width: width >= 1024 ? "380px" : width >= 640 ? "320px" : "90vw",
+                            height: width >= 1024 ? "380px" : width >= 640 ? "320px" : "60vw",
                             maxWidth: "420px",
-                            height: "60vw",
                             maxHeight: "420px",
                         };
-
-                        // Responsive card sizing
-                        if (window.innerWidth >= 1024) { // lg+
-                            style.width = "380px";
-                            style.height = "380px";
-                        } else if (window.innerWidth >= 640) { // sm+
-                            style.width = "320px";
-                            style.height = "320px";
-                        } else {
-                            style.width = "90vw";
-                            style.height = "60vw";
-                        }
 
                         // Responsive left positions
                         switch (offset) {
@@ -122,19 +109,19 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                                 break;
                             case 1: // Right-near
                                 positionClass = "z-20 scale-95 opacity-80 blur-[1px]";
-                                style.left = window.innerWidth < 640 ? "70%" : "75%";
+                                style.left = width < 640 ? "70%" : "75%";
                                 break;
                             case 2: // Right-far
                                 positionClass = "z-10 scale-90 opacity-50 blur-sm";
-                                style.left = window.innerWidth < 640 ? "90%" : "92%";
+                                style.left = width < 640 ? "90%" : "92%";
                                 break;
                             case total - 1: // Left-near
                                 positionClass = "z-20 scale-95 opacity-80 blur-[1px]";
-                                style.left = window.innerWidth < 640 ? "30%" : "25%";
+                                style.left = width < 640 ? "30%" : "25%";
                                 break;
                             case total - 2: // Left-far
                                 positionClass = "z-10 scale-90 opacity-50 blur-sm";
-                                style.left = window.innerWidth < 640 ? "10%" : "8%";
+                                style.left = width < 640 ? "10%" : "8%";
                                 break;
                             default:
                                 return null;
@@ -167,6 +154,7 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                     })}
                 </div>
 
+                {/* Right Arrow */}
                 <button
                     className="absolute right-[-2%] top-1/2 transform -translate-y-1/2 rounded-full p-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300
         focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -179,6 +167,16 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
         </div>
     );
 };
+
+function useWindowSize() {
+    const [size, setSize] = React.useState([window.innerWidth, window.innerHeight]);
+    React.useEffect(() => {
+        const handleResize = () => setSize([window.innerWidth, window.innerHeight]);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    return size;
+}
 
 const reviews: Review[] = [
     {
@@ -301,14 +299,10 @@ const TestimonialsPage: React.FC = () => {
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold text-gray-800 mb-4">What Our Clients Say</h2>
                     <p className="text-gray-600 max-w-3xl mx-auto">
-                        Hear from our satisfied clients about their experience working with GREATHIRE.
+                        {/* You probably want to show reviews here */}
                     </p>
                 </div>
-
-                {/* Client Reviews Carousel */}
-                <TestimonialsCarousel reviews={reviews} title="Client Reviews" />
-
-                {/* Team Stories Carousel below */}
+                <TestimonialsCarousel reviews={reviews} title="" />
                 <div className="mt-20">
                     <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">Our Team Stories</h2>
                     <TestimonialsCarousel reviews={teamStories} title="" />
