@@ -59,16 +59,17 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
             <div className="flex justify-center items-center relative h-[400px] overflow-visible group">
                 {/* Left Arrow */}
                 <button
-                    className="absolute left-[-2%] top-1/2 transform -translate-y-1/2 rounded-full p-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300"
+                    className="absolute left-[-2%] top-1/2 transform -translate-y-1/2 rounded-full p-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300
+        focus:outline-none focus:ring-2 focus:ring-blue-400"
                     onClick={handlePrev}
                 >
-                    <i className="fas fa-chevron-left text-black opacity-70 text-4xl"></i>
+                    <i className="fas fa-chevron-left text-black opacity-70 text-4xl transition-transform duration-300 group-hover:scale-125 group-hover:text-blue-700 group-focus:scale-125 group-focus:text-blue-700"></i>
                 </button>
 
                 {/* Cards */}
                 <div
-                    className="relative w-full max-w-5xl flex justify-center items-center"
-                    style={{ minHeight: 350 }} // decreased height
+                    className="relative w-screen flex justify-center items-center overflow-visible"
+                    style={{ minHeight: 450 }} // increased height for larger cards
                 >
                     {/* Huge 3D quote icon above the cards */}
                     <div className="absolute -top-14 left-1/3 -translate-x-1/119 z-30 pointer-events-none">
@@ -78,68 +79,80 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                     </div>
 
                     {reviews.map((review, index) => {
-                        const isActive = index === activeIndex;
-                        const isLeft = index === (activeIndex - 1 + reviews.length) % reviews.length;
-                        const isRight = index === (activeIndex + 1) % reviews.length;
+                        const total = reviews.length;
+                        const offset = (index - activeIndex + total) % total;
 
-                        if (!(isActive || isLeft || isRight)) return null;
+                        let positionClass = '';
+                        let style: React.CSSProperties = {
+                            backgroundImage: `url(${CardBgImg})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
+                            position: "absolute",
+                            transition: "left 0.7s cubic-bezier(0.4,0,0.2,1), width 0.7s cubic-bezier(0.4,0,0.2,1), height 0.7s cubic-bezier(0.4,0,0.2,1)",
+                            pointerEvents: "none",
+                            width: "420px",
+                            height: "420px",
+                            left: "50%",
+                            transform: "translateX(-50%)",
+                        };
+
+                        switch (offset) {
+                            case 0: // Active (center)
+                                positionClass = "z-30 scale-105 opacity-100";
+                                style.left = "50%";
+                                style.pointerEvents = "auto";
+                                style.width = "380px";   // Decreased from 520px
+                                style.height = "380px";  // Decreased from 520px
+                                break;
+                            case 1: // Right-near
+                                positionClass = "z-20 scale-95 opacity-80 blur-[1px]";
+                                style.left = "75%";
+                                style.width = "340px";
+                                style.height = "340px";
+                                break;
+                            case 2: // Right-far
+                                positionClass = "z-10 scale-90 opacity-50 blur-sm";
+                                style.left = "92%";
+                                style.width = "270px";
+                                style.height = "270px";
+                                break;
+                            case total - 1: // Left-near
+                                positionClass = "z-20 scale-95 opacity-80 blur-[1px]";
+                                style.left = "25%";
+                                style.width = "340px";
+                                style.height = "340px";
+                                break;
+                            case total - 2: // Left-far
+                                positionClass = "z-10 scale-90 opacity-50 blur-sm";
+                                style.left = "8%";
+                                style.width = "270px";
+                                style.height = "270px";
+                                break;
+                            default:
+                                return null;
+                        }
 
                         return (
                             <div
                                 key={index}
-                                className={`
-                                    absolute
-                                    transition-all duration-[3000ms] ease-in-out
-                                    ${isActive
-                                        ? "z-20 scale-105 bg-white opacity-120 left-1/2 -translate-x-1/2 cursor-pointer"
-                                        : isLeft
-                                        ? "z-10 scale-90 bg-gray-100 opacity-60 blur-sm left-1/4 -translate-x-1/2"
-                                        : isRight
-                                        ? "z-10 scale-90 bg-gray-100 opacity-60 blur-sm left-3/4 -translate-x-1/2"
-                                        : "hidden"}
-                                    rounded-xl shadow-md
-                                `}
-                                style={{
-                                    width: isActive ? "350px" : "260px",
-                                    height: isActive ? "350px" : "260px",
-                                    pointerEvents: isActive ? "auto" : "none",
-                                    backgroundImage: `url(${CardBgImg})`,
-                                    backgroundSize: "cover",
-                                    backgroundPosition: "center",
-                                    backgroundRepeat: "no-repeat",
-                                }}
-                                onMouseEnter={isActive ? () => setIsPaused(true) : undefined}
-                                onMouseLeave={isActive ? () => setIsPaused(false) : undefined}
+                                className={`absolute ${positionClass} rounded-xl shadow-lg`}
+                                style={style}
+                                onMouseEnter={offset === 0 ? () => setIsPaused(true) : undefined}
+                                onMouseLeave={offset === 0 ? () => setIsPaused(false) : undefined}
                             >
-                                {/* White overlay for lightening the background */}
-                                <div
-                                    className="absolute inset-0 rounded-xl"
-                                    style={{
-                                        background: "rgba(255,255,255,0.30)", // adjust opacity for desired lightness
-                                        zIndex: 1,
-                                    }}
-                                />
-                                <div className="w-full h-full rounded-xl p-6 flex flex-col justify-between relative" style={{ zIndex: 2 }}>
-                                    <div>
-                                        {/* <div className="text-blue-800 text-2xl opacity-90 mb-2">
-                                            <i className="fas fa-quote-left"></i>
-                                        </div> */}
-                                        <div className="flex justify-end mb-4">
-                                            {[...Array(5)].map((_, i) => (
-                                                <i
-                                                    key={i}
-                                                    className="fas fa-star text-yellow-400 mr-1"
-                                                ></i>
-                                            ))}
-                                        </div>
-                                        <p className="text-gray-100 font-bold italic text-lg text-justify">
-                                            "{review.text}"
-                                        </p>
+                                <div className="absolute inset-0 rounded-xl" style={{ background: "rgba(255,255,255,0.3)", zIndex: 1 }} />
+                                <div className="w-full h-full rounded-xl p-4 flex flex-col justify-between relative space-y-2" style={{ zIndex: 2 }}>
+                                    <div className="flex justify-end mb-2">
+                                        {[...Array(5)].map((_, i) => (
+                                            <i key={i} className="fas fa-star text-yellow-400 mr-1"></i>
+                                        ))}
                                     </div>
-                                    <div className="mt-2 text-right">
-                                        <h4 className="font-medium text-gray-300 text-sm">
-                                            {review.author}
-                                        </h4>
+                                    <p className="block w-full text-gray-100 font-bold italic text-base leading-tight mb-1">
+                                        "{review.text}"
+                                    </p>
+                                    <div className="mt-1 text-right">
+                                        <h4 className="font-medium text-gray-300 text-xs">{review.author}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -149,10 +162,11 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
 
                 {/* Right Arrow */}
                 <button
-                    className="absolute right-[-2%] top-1/2 transform -translate-y-1/2 rounded-full p-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300"
+                    className="absolute right-[-2%] top-1/2 transform -translate-y-1/2 rounded-full p-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300
+        focus:outline-none focus:ring-2 focus:ring-blue-400"
                     onClick={handleNext}
                 >
-                    <i className="fas fa-chevron-right text-black opacity-70 text-4xl"></i>
+                    <i className="fas fa-chevron-right text-black opacity-70 text-4xl transition-transform duration-300 group-hover:scale-125 group-hover:text-blue-700 group-focus:scale-125 group-focus:text-blue-700"></i>
                 </button>
             </div>
         </div>
