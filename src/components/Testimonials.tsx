@@ -104,19 +104,27 @@ const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) =
                                 break;
                             case 1: // Right-near
                                 positionClass = "z-20 scale-95 opacity-80 blur-[1px]";
-                                style.left = width < 640 ? "70%" : "75%";
+                                style.left = "calc(50% + 220px)"; // 220px is half card width + margin for desktop
+                                if (width < 1024) style.left = "calc(50% + 180px)";
+                                if (width < 640) style.left = "calc(50% + 45vw)";
                                 break;
                             case 2: // Right-far
                                 positionClass = "z-10 scale-90 opacity-50 blur-sm";
-                                style.left = width < 640 ? "90%" : "92%";
+                                style.left = "calc(50% + 440px)";
+                                if (width < 1024) style.left = "calc(50% + 360px)";
+                                if (width < 640) style.left = "calc(50% + 90vw)";
                                 break;
                             case total - 1: // Left-near
                                 positionClass = "z-20 scale-95 opacity-80 blur-[1px]";
-                                style.left = width < 640 ? "30%" : "25%";
+                                style.left = "calc(50% - 220px)";
+                                if (width < 1024) style.left = "calc(50% - 180px)";
+                                if (width < 640) style.left = "calc(50% - 45vw)";
                                 break;
                             case total - 2: // Left-far
                                 positionClass = "z-10 scale-90 opacity-50 blur-sm";
-                                style.left = width < 640 ? "10%" : "8%";
+                                style.left = "calc(50% - 440px)";
+                                if (width < 1024) style.left = "calc(50% - 360px)";
+                                if (width < 640) style.left = "calc(50% - 90vw)";
                                 break;
                             default:
                                 return null;
