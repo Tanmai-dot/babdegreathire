@@ -1,6 +1,20 @@
 import React from 'react';
 
-const services = [
+type Service = {
+    icon: string;
+    title: string;
+    description: string;
+    features: string[];
+    link: string;
+    expert?: {
+        img: string;
+        name: string;
+        role: string;
+        quote: string;
+    };
+};
+
+const services: Service[] = [
     {
         icon: 'fas fa-code',
         title: 'Web Development',
@@ -12,6 +26,13 @@ const services = [
             'Full Stack Solutions',
         ],
         link: '#',
+        // Uncomment and fill if you want to show expert for this service
+        // expert: {
+        //     img: 'path/to/image.jpg',
+        //     name: 'Jane Doe',
+        //     role: 'Lead Web Developer',
+        //     quote: 'We build scalable and robust web solutions.',
+        // },
     },
     {
         icon: 'fas fa-mobile-alt',
@@ -37,13 +58,19 @@ const services = [
             'Cloud Security & DevOps',
         ],
         link: '#',
-        expert: {
-            img: 'https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20male%20cloud%20architect%2C%20tech%20professional%20appearance%2C%20neutral%20background%2C%20confident%20smile%2C%20corporate%20portrait&width=40&height=40&seq=13&orientation=squarish',
-            name: 'Alex Thompson',
-            role: 'Cloud Solutions Architect',
-            quote:
-                '"We deliver scalable cloud solutions that grow with your business."',
-        },
+    },
+    {
+        icon: 'fas fa-laptop',
+        title: 'Digital Marketing',
+        description:
+            'Data-driven digital marketing solutions to help businesses grow their online presence, generate leads, and drive sales through innovative strategies.',
+        features: [
+            'Content Marketing & Blogging',
+            'Influencer & Affiliate Marketing',
+            'SEO (Search Engine Optimization',
+            'Email Campaign Automation',
+        ],
+        link: '#',
     },
 ];
 
@@ -56,7 +83,7 @@ const Services = () => (
                     We offer comprehensive digital solutions tailored to your business needs, from development to marketing.
                 </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
                 {services.map((service, idx) => (
                     <div
                         key={service.title}
