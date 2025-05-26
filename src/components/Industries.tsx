@@ -70,12 +70,7 @@ const Industries: React.FC = () => (
                             </div>
                             <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
                             <p className="text-gray-600 mb-4">{description}</p>
-                            <a
-                                href="#"
-                                className="text-blue-600 font-medium inline-flex items-center"
-                            >
-                                Learn more <i className="fas fa-arrow-right ml-2" />
-                            </a>
+
                         </div>
                     </div>
                 ))}

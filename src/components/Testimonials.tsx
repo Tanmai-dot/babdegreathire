@@ -1,189 +1,12 @@
 import React, { useState, useRef } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Font Awesome
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import CardBgImg from '../assets/White and Blue.png'; // Adjust path if needed
-import CityBg from '../assets/wallpaper.jpg'; // Adjust path if needed
 
+import CityBg from '../assets/wallpaper.jpg'; // Adjust path if needed
+import TestimonialsCarousel from './TestimonialsCarousel';
 interface Review {
     text: string;
     name: string;
     title: string;
-}
-
-interface TestimonialsProps {
-    reviews: Review[];
-    title: string;
-}
-
-const TestimonialsCarousel: React.FC<TestimonialsProps> = ({ reviews, title }) => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [isPaused, setIsPaused] = useState(false);
-    const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-    const [width] = useWindowSize(); // <-- add this line
-
-    // Start/stop auto-transition based on isPaused
-    React.useEffect(() => {
-        if (!isPaused) {
-            startAutoTransition();
-        } else {
-            stopAutoTransition();
-        }
-        return () => stopAutoTransition();
-    }, [reviews.length, isPaused]);
-
-    const startAutoTransition = () => {
-        stopAutoTransition();
-        intervalRef.current = setInterval(() => {
-            setActiveIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-        }, 4000); // 4 seconds
-    };
-
-    const stopAutoTransition = () => {
-        if (intervalRef.current) {
-            clearInterval(intervalRef.current);
-            intervalRef.current = null;
-        }
-    };
-
-    const handleNext = () => {
-        setActiveIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-    };
-
-    const handlePrev = () => {
-        setActiveIndex((prevIndex) =>
-            prevIndex === 0 ? reviews.length - 1 : prevIndex - 1
-        );
-    };
-
-    return (
-        <div className="mb-20 relative">
-            {title && (
-                <h3 className="text-2xl font-bold text-gray-800 text-center mb-8">{title}</h3>
-            )}
-            <div className="flex justify-center items-center relative h-[320px] sm:h-[400px] md:h-[450px] overflow-visible group">
-                {/* Left Arrow */}
-                <button
-                    className="absolute left-[-2%] top-1/2 transform -translate-y-1/2 rounded-full p-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300
-        focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    onClick={handlePrev}
-                    title="Previous testimonial"
-                >
-                    <i className="fas fa-chevron-left text-black opacity-70 text-4xl transition-transform duration-300 group-hover:scale-125 group-hover:text-blue-700 group-focus:scale-125 group-focus:text-blue-700"></i>
-                </button>
-
-                {/* Cards */}
-                <div
-                    className="relative w-screen flex justify-center items-center overflow-visible"
-                    style={{ minHeight: width >= 1024 ? 450 : width >= 640 ? 400 : 320 }}
-                >
-                    {reviews.map((review, index) => {
-                        const total = reviews.length;
-                        const offset = (index - activeIndex + total) % total;
-
-                        let positionClass = '';
-                        let style: React.CSSProperties = {
-                            backgroundImage: `url(${CardBgImg})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                            backgroundRepeat: "no-repeat",
-                            position: "absolute",
-                            transition: "left 0.7s cubic-bezier(0.4,0,0.2,1), width 0.7s cubic-bezier(0.4,0,0.2,1), height 0.7s cubic-bezier(0.4,0,0.2,1)",
-                            pointerEvents: "none",
-                            left: "50%",
-                            transform: "translateX(-50%)",
-                            width: width >= 1024 ? "380px" : width >= 640 ? "320px" : "90vw",
-                            height: width >= 1024 ? "380px" : width >= 640 ? "320px" : "60vw",
-                            maxWidth: "420px",
-                            maxHeight: "420px",
-                            padding: "2rem",
-                        };
-
-                        // Responsive left positions
-                        switch (offset) {
-                            case 0: // Active (center)
-                                positionClass = "z-30 scale-105 opacity-100";
-                                style.left = "50%";
-                                style.pointerEvents = "auto";
-                                break;
-                            case 1: // Right-near
-                                positionClass = "z-20 scale-95 opacity-80 blur-[1px]";
-                                style.left = "calc(50% + 220px)"; // 220px is half card width + margin for desktop
-                                if (width < 1024) style.left = "calc(50% + 180px)";
-                                if (width < 640) style.left = "calc(50% + 45vw)";
-                                break;
-                            case 2: // Right-far
-                                positionClass = "z-10 scale-90 opacity-50 blur-sm";
-                                style.left = "calc(50% + 440px)";
-                                if (width < 1024) style.left = "calc(50% + 360px)";
-                                if (width < 640) style.left = "calc(50% + 90vw)";
-                                break;
-                            case total - 1: // Left-near
-                                positionClass = "z-20 scale-95 opacity-80 blur-[1px]";
-                                style.left = "calc(50% - 220px)";
-                                if (width < 1024) style.left = "calc(50% - 180px)";
-                                if (width < 640) style.left = "calc(50% - 45vw)";
-                                break;
-                            case total - 2: // Left-far
-                                positionClass = "z-10 scale-90 opacity-50 blur-sm";
-                                style.left = "calc(50% - 440px)";
-                                if (width < 1024) style.left = "calc(50% - 360px)";
-                                if (width < 640) style.left = "calc(50% - 90vw)";
-                                break;
-                            default:
-                                return null;
-                        }
-
-                        return (
-                            <div
-                                key={index}
-                                className={`absolute ${positionClass} rounded-xl shadow-lg`}
-                                style={style}
-                                onMouseEnter={offset === 0 ? () => setIsPaused(true) : undefined}
-                                onMouseLeave={offset === 0 ? () => setIsPaused(false) : undefined}
-                            >
-                                <div className="absolute inset-0 rounded-xl" style={{ background: "rgba(255,255,255,0.1)", zIndex: 1 }} />
-                                <div className="w-full h-full rounded-xl p-2 sm:p-4 flex flex-col justify-between relative space-y-2" style={{ zIndex: 2 }}>
-                                    <div className="flex justify-end mb-2">
-                                        {[...Array(5)].map((_, i) => (
-                                            <i key={i} className="fas fa-star text-yellow-400 mr-1"></i>
-                                        ))}
-                                    </div>
-                                    <p className="block w-full text-gray-100 font-medium italic text-lg lg:text-base  mb-1">
-                                        "{review.text}"
-                                    </p>
-                                    <div className="mt-1 text-right">
-                                        <div className=" font-medium text-gray-900 text-md">{review.name}</div>
-                                        <div className="text-gray-900 text-sm">{review.title}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
-
-                {/* Right Arrow */}
-                <button
-                    className="absolute right-[-2%] top-1/2 transform -translate-y-1/2 rounded-full p-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300
-        focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    onClick={handleNext}
-                    title="Next testimonial"
-                >
-                    <i className="fas fa-chevron-right text-black opacity-70 text-4xl transition-transform duration-300 group-hover:scale-125 group-hover:text-blue-700 group-focus:scale-125 group-focus:text-blue-700"></i>
-                </button>
-            </div>
-        </div>
-    );
-};
-
-function useWindowSize() {
-    const [size, setSize] = React.useState([window.innerWidth, window.innerHeight]);
-    React.useEffect(() => {
-        const handleResize = () => setSize([window.innerWidth, window.innerHeight]);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-    return size;
 }
 
 const reviews: Review[] = [
@@ -329,7 +152,7 @@ const teamStories: Review[] = [
 
 const TestimonialsPage: React.FC = () => {
     return (
-        <section className="py-20 bg-blue-50 relative overflow-hidden">
+        <section className="py-20 bg-gradient-to-tl bg-gradient-to-r from-gray-800 via-blue-700 to-gray-900 relative overflow-hidden">
             {/* Background Image */}
             <div
                 className="absolute inset-0 w-full h-full z-0"
@@ -337,19 +160,19 @@ const TestimonialsPage: React.FC = () => {
                     backgroundImage: `url(${CityBg})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    opacity: 0.15, // Adjust opacity as needed
+                    opacity: 0.3, // Adjust opacity as needed
                 }}
             />
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-4">What Our Clients Say</h2>
+                    <h2 className="text-4xl font-bold text-blue-50 mb-4">What Our Clients Say</h2>
                     <p className="text-gray-600 max-w-3xl mx-auto">
                         {/* You probably want to show reviews here */}
                     </p>
                 </div>
                 <TestimonialsCarousel reviews={reviews} title="" />
                 <div className="mt-20">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">Our Team Stories</h2>
+                    <h2 className="text-4xl pb-10 font-bold text-blue-50 mb-6 text-center">Our Team Stories</h2>
                     <TestimonialsCarousel reviews={teamStories} title="" />
                 </div>
             </div>

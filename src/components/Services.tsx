@@ -118,9 +118,7 @@ const Services = () => (
                                 <p className="text-sm text-gray-600 italic">{service.expert.quote}</p>
                             </div>
                         )}
-                        <a href={service.link} className="text-blue-600 font-medium inline-flex items-center">
-                            Learn more <i className="fas fa-arrow-right ml-2" />
-                        </a>
+
                     </div>
                 ))}
             </div>

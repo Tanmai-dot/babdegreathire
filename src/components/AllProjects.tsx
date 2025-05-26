@@ -181,39 +181,24 @@ const projects = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.',
     category: 'digitalmarketing',
     date: 'May 2025',
-    image: 'https://your-image-url.com/seo-platform.jpg',
-    testimonial: {
-      name: '',
-      position: '',
-      image: 'https://your-image-url.com/jane.jpg',
-      quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    },
+    image: 'https://cdn.pixabay.com/photo/2019/04/07/23/11/search-engine-optimization-4111000_960_720.jpg',
+
   },
   {
     title: 'Social Media Campaign Manager',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.',
     category: 'digitalmarketing',
     date: 'April 2025',
-    image: 'https://your-image-url.com/social-media.jpg',
-    testimonial: {
-      name: '',
-      position: '',
-      image: 'https://your-image-url.com/alex.jpg',
-      quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    },
+    image: 'https://cdn.pixabay.com/photo/2019/05/26/06/04/digital-marketing-4229635_1280.jpg',
+
   },
   {
     title: 'Email Marketing Automation',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.',
     category: 'digitalmarketing',
     date: 'March 2025',
-    image: 'https://your-image-url.com/email-marketing.jpg',
-    testimonial: {
-      name: '',
-      position: '',
-      image: 'https://your-image-url.com/priya.jpg',
-      quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    },
+    image: 'https://cdn.pixabay.com/photo/2024/11/12/01/38/email-9191069_1280.png',
+
   },
 ];
 
@@ -337,14 +322,10 @@ const TABS = [
                             <p className="text-xs text-gray-600">{project.testimonial.position}</p>
                           </div>
                         </div>
-                        <p className="text-sm text-gray-600 italic mt-2">
-                          "{project.testimonial.quote}"
-                        </p>
+
                       </div>
                     )}
-                    <button className="text-blue-600 font-medium inline-flex items-center cursor-pointer">
-                      View Details <i className="fas fa-arrow-right ml-2"></i>
-                    </button>
+
                   </div>
                 </div>
               );

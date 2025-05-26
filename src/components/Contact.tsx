@@ -89,7 +89,7 @@ const Contact = () => (
                                     type="email"
                                     id="email"
                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
-                                    placeholder="hr@babde.tech"
+                                    placeholder="Add your email address"
                                 />
                             </div>
                         </div>

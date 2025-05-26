@@ -47,13 +47,7 @@ const PROJECTS = [
     date: 'March 2025',
     image: 'https://readdy.ai/api/search-image?query=Modern%2520real%2520estate%2520property%2520listing%2520platform%252C%2520property%2520management%2520dashboard%252C%2520real%2520estate%2520application%2520with%2520map%2520integration%252C%2520professional%2520interface%2520with%2520blue%2520color%2520scheme%252C%2520property%2520booking%2520system&width=600&height=400&seq=8&orientation=landscape',
   },
-  {
-    title: 'Real Estate Platform',
-    description: 'A property management and listing platform with virtual tour capabilities.',
-    category: 'realestate',
-    date: 'March 2025',
-    image: 'https://readdy.ai/api/search-image?query=Modern%2520real%2520estate%2520property%2520listing%2520platform%252C%2520property%2520management%2520dashboard%252C%2520real%2520estate%2520application%2520with%2520map%2520integration%252C%2520professional%2520interface%2520with%2520blue%2520color%2520scheme%252C%2520property%2520booking%2520system&width=600&height=400&seq=8&orientation=landscape',
-  },
+
   {
     title: 'E-Learning Management System',
     description: 'Comprehensive learning platform for educational institutions with course management.',
@@ -174,39 +168,24 @@ const PROJECTS = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.',
     category: 'digitalmarketing',
     date: 'May 2025',
-    image: 'https://your-image-url.com/seo-platform.jpg',
-    testimonial: {
-      name: '',
-      position: '',
-      image: 'https://your-image-url.com/jane.jpg',
-      quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    },
+    image: 'https://cdn.pixabay.com/photo/2019/04/07/23/11/search-engine-optimization-4111000_960_720.jpg',
+
   },
   {
     title: 'Social Media Campaign Manager',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.',
     category: 'digitalmarketing',
     date: 'April 2025',
-    image: 'https://your-image-url.com/social-media.jpg',
-    testimonial: {
-      name: '',
-      position: '',
-      image: 'https://your-image-url.com/alex.jpg',
-      quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    },
+    image: 'https://cdn.pixabay.com/photo/2019/05/26/06/04/digital-marketing-4229635_1280.jpg',
+
   },
   {
     title: 'Email Marketing Automation',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.',
     category: 'digitalmarketing',
     date: 'March 2025',
-    image: 'https://your-image-url.com/email-marketing.jpg',
-    testimonial: {
-      name: '',
-      position: '',
-      image: 'https://your-image-url.com/priya.jpg',
-      quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    },
+    image: 'https://cdn.pixabay.com/photo/2024/11/12/01/38/email-9191069_1280.png',
+
   },
 ];
 
@@ -310,9 +289,7 @@ const Projects: React.FC = () => {
                     </p>
                   </div>
                 )}
-                <button className="text-blue-600 font-medium inline-flex items-center cursor-pointer">
-                  View Project <i className="fas fa-arrow-right ml-2"></i>
-                </button>
+
               </div>
             </div>
           ))}
