@@ -217,7 +217,7 @@ const Projects: React.FC = () => {
   const filteredProjects =
     activeTab === 'all'
       ? PROJECTS.slice(0, visibleCount)
-      : PROJECTS.filter(project => project.category === activeTab);
+      : PROJECTS.filter(project => project.category === activeTab).slice(0, 3);
 
   return (
     <section id='projects' className="py-20 bg-white">
