@@ -30,7 +30,7 @@ import vortalsoft from '../assets/clientLogos/vortalsoft.jpg';
 import Wipro from '../assets/clientLogos/Wipro.svg';
 import zeelmedia from '../assets/clientLogos/zeelmedia.png';
 
-// List of all logos with names
+// List of all logos
 const companyLogos = [
     { src: a1townshipJpeg },
     { src: a1townshipPng },
@@ -62,10 +62,11 @@ const companyLogos = [
     { src: zeelmedia },
 ];
 
-// Number of cards visible per row
 const CARDS_PER_ROW = 4;
+const CARD_WIDTH = 210; // px
+const CARD_HEIGHT = 130; // px
 
-// Split the logos into two halves (top and bottom, no overlap)
+// Split the logos into two halves (top and bottom)
 const half = Math.ceil(companyLogos.length / 2);
 const topLogos = companyLogos.slice(0, half);
 const bottomLogos = companyLogos.slice(half);
@@ -81,16 +82,38 @@ function useScrollingCards(logos: typeof companyLogos, interval = 3000) {
     }, [logos.length, interval]);
 
     // Get the visible cards, wrapping around the array
-    const visible = Array.from({ length: CARDS_PER_ROW }, (_, i) =>
+    return Array.from({ length: CARDS_PER_ROW }, (_, i) =>
         logos[(startIdx + i) % logos.length]
     );
-    return visible;
 }
 
-const CARD_WIDTH = 210; // px
-const CARD_HEIGHT = 130; // px
+const LogoRow: React.FC<{ logos: { src: string }[]; rowKey: string }> = ({
+    logos,
+    rowKey,
+}) => (
+    <div className="flex justify-center gap-10 mb-8">
+        {logos.map((logo, idx) => (
+            <div
+                key={`${rowKey}-${idx}`}
+                className="bg-white rounded-xl shadow-md flex flex-col items-center justify-center transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+                style={{
+                    minWidth: `${CARD_WIDTH}px`,
+                    maxWidth: `${CARD_WIDTH}px`,
+                    height: `${CARD_HEIGHT}px`,
+                }}
+            >
+                <img
+                    src={logo.src}
+                    alt=""
+                    className="h-16 w-auto object-contain mb-2"
+                    style={{ maxWidth: '120px' }}
+                />
+            </div>
+        ))}
+    </div>
+);
 
-const Companies = () => {
+const Companies: React.FC = () => {
     const topRow = useScrollingCards(topLogos, 3000);
     const bottomRow = useScrollingCards(bottomLogos, 3000);
 
@@ -106,49 +129,8 @@ const Companies = () => {
                     </p>
                 </div>
 
-                {/* Top Row: Scrolls left to right */}
-                <div className="flex justify-center gap-10 mb-8">
-                    {topRow.map((logo, idx) => (
-                        <div
-                            key={`top-${idx}`}
-                            className="bg-white rounded-xl shadow-md flex flex-col items-center justify-center transition-transform duration-300 hover:scale-105 hover:shadow-xl"
-                            style={{
-                                minWidth: `${CARD_WIDTH}px`,
-                                maxWidth: `${CARD_WIDTH}px`,
-                                height: `${CARD_HEIGHT}px`,
-                            }}
-                        >
-                            <img
-                                src={logo.src}
-                                alt=""
-                                className="h-16 w-auto object-contain mb-2"
-                                style={{ maxWidth: '120px' }}
-                            />
-                        </div>
-                    ))}
-                </div>
-
-                {/* Bottom Row: Scrolls left to right */}
-                <div className="flex justify-center gap-10">
-                    {bottomRow.map((logo, idx) => (
-                        <div
-                            key={`bottom-${idx}`}
-                            className="bg-white rounded-xl shadow-md flex flex-col items-center justify-center transition-transform duration-300 hover:scale-105 hover:shadow-xl"
-                            style={{
-                                minWidth: `${CARD_WIDTH}px`,
-                                maxWidth: `${CARD_WIDTH}px`,
-                                height: `${CARD_HEIGHT}px`,
-                            }}
-                        >
-                            <img
-                                src={logo.src}
-                                alt=""
-                                className="h-16 w-auto object-contain mb-2"
-                                style={{ maxWidth: '120px' }}
-                            />
-                        </div>
-                    ))}
-                </div>
+                <LogoRow logos={topRow} rowKey="top" />
+                <LogoRow logos={bottomRow} rowKey="bottom" />
 
                 <div className="mt-12 text-center">
                     <p className="text-gray-600">

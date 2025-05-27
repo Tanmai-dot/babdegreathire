@@ -1,6 +1,15 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../App.css';
 
+const navLinks = [
+    { id: 'home', label: 'Home' },
+    { id: 'industries', label: 'Industries' },
+    { id: 'services', label: 'Services' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'about', label: 'About' },
+    { id: 'contact', label: 'Contact' },
+];
+
 const Header = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -18,21 +27,29 @@ const Header = () => {
 
     return (
         <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
-            <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-                <h1 className="text-2xl font-bold text-gray-800 cursor-pointer" onClick={() => handleNavClick('home')}>
+            <div className="container mx-auto px-6 py-4 flex items-center justify-between relative">
+                {/* Logo */}
+                <h1
+                    className="text-2xl font-bold text-gray-800 cursor-pointer"
+                    onClick={() => handleNavClick('home')}
+                >
                     GREAT<span className="text-blue-700">HIRE</span>
                 </h1>
-                <nav className="hidden md:flex items-center space-x-8">
-                    <button onClick={() => handleNavClick('home')} className="text-gray-700 hover:text-blue-600 font-medium">Home</button>
-                    <button onClick={() => handleNavClick('industries')} className="text-gray-700 hover:text-blue-600 font-medium">Industries</button>
-                    <button onClick={() => handleNavClick('services')} className="text-gray-700 hover:text-blue-600 font-medium">Services</button>
-                    <button onClick={() => handleNavClick('projects')} className="text-gray-700 hover:text-blue-600 font-medium">Projects</button>
-                    <button onClick={() => handleNavClick('about')} className="text-gray-700 hover:text-blue-600 font-medium">About</button>
-                    <button onClick={() => handleNavClick('contact')} className="text-gray-700 hover:text-blue-600 font-medium">Contact</button>
+
+                {/* Navigation Links */}
+                <nav className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-8">
+                    {navLinks.map(({ id, label }) => (
+                        <button
+                            key={id}
+                            onClick={() => handleNavClick(id)}
+                            className="text-gray-700 hover:text-blue-600 font-medium"
+                        >
+                            {label}
+                        </button>
+                    ))}
                 </nav>
-                <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300 whitespace-nowrap cursor-pointer">
-                    Get a Quote
-                </button>
+
+                {/* Mobile Menu Icon */}
                 <button
                     className="md:hidden text-gray-700 focus:outline-none cursor-pointer"
                     aria-label="Open navigation menu"

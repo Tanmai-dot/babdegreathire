@@ -8,6 +8,7 @@ const AllProjects: React.FC = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [visibleProjects, setVisibleProjects] = useState(9);
+  
 // Helper function to get category styles
 const getCategoryStyles = (category: string) => {
   switch (category) {
@@ -34,12 +35,7 @@ const projects = [
     category: 'it',
     date: 'May 2025',
     image: 'https://readdy.ai/api/search-image?query=Advanced%2520AI%2520visualization%2520interface%2520with%2520neural%2520networks%252C%2520machine%2520learning%2520algorithms%2520display%252C%2520futuristic%2520technology%2520dashboard%2520with%2520blue%2520glowing%2520elements%252C%2520professional%2520AI%2520system%2520interface&width=600&height=400&seq=11&orientation=landscape',
-    testimonial: {
-      name: 'Emily Chen',
-      position: 'Data Science Director, TechCorp',
-      image: 'https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520a%2520female%2520tech%2520executive%252C%2520business%2520attire%252C%2520neutral%2520background%252C%2520confident%2520expression%252C%2520corporate%2520portrait%2520style&width=40&height=40&seq=12&orientation=squarish',
-      quote: 'The AI platform revolutionized our data analysis capabilities.',
-    },
+
   },
   {
     title: 'Hospital Management System',
@@ -47,12 +43,7 @@ const projects = [
     category: 'healthcare',
     date: 'April 2025',
     image: 'https://readdy.ai/api/search-image?query=Modern%2520hospital%2520management%2520system%2520interface%252C%2520patient%2520records%2520dashboard%252C%2520medical%2520scheduling%2520application%252C%2520healthcare%2520software%2520with%2520clean%2520design%252C%2520professional%2520medical%2520interface%2520with%2520blue%2520color%2520scheme&width=600&height=400&seq=7&orientation=landscape',
-    testimonial: {
-      name: 'Dr. James Wilson',
-      position: 'Medical Director, City Hospital',
-      image: 'https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520male%2520doctor%252C%2520medical%2520attire%252C%2520warm%2520smile%252C%2520hospital%2520background%252C%2520healthcare%2520professional%2520portrait&width=40&height=40&seq=21&orientation=squarish',
-      quote: 'This system has streamlined our operations significantly.',
-    },
+
   },
   {
     title: 'Real Estate Platform',
@@ -67,12 +58,7 @@ const projects = [
     category: 'education',
     date: 'February 2025',
     image: 'https://readdy.ai/api/search-image?query=Modern%2520e-learning%2520platform%2520interface%2520with%2520course%2520modules%252C%2520educational%2520content%2520dashboard%252C%2520online%2520learning%2520system%2520with%2520clean%2520design%252C%2520professional%2520education%2520interface%2520with%2520blue%2520accent%2520colors&width=600&height=400&seq=30&orientation=landscape',
-    testimonial: {
-      name: 'Prof. Sarah Miller',
-      position: 'Dean of Digital Learning, State University',
-      image: 'https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520female%2520professor%252C%2520academic%2520attire%252C%2520friendly%2520expression%252C%2520university%2520office%2520background%252C%2520education%2520professional%2520portrait&width=40&height=40&seq=31&orientation=squarish',
-      quote: 'The platform has transformed how we deliver education to our students.',
-    },
+
   },
   {
     title: 'Cloud Migration & DevOps',
@@ -94,12 +80,7 @@ const projects = [
     category: 'realestate',
     date: 'November 2024',
     image: 'https://readdy.ai/api/search-image?query=Real%2520estate%2520investment%2520analytics%2520dashboard%2520with%2520property%2520value%2520charts%252C%2520investment%2520portfolio%2520visualization%252C%2520property%2520market%2520analysis%2520interface%2520with%2520professional%2520design%252C%2520blue%2520accent%2520colors&width=600&height=400&seq=34&orientation=landscape',
-    testimonial: {
-      name: 'Robert Thompson',
-      position: 'Investment Director, RealtyInvest',
-      image: 'https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520male%2520investment%2520executive%252C%2520business%2520formal%2520attire%252C%2520confident%2520expression%252C%2520office%2520background%252C%2520corporate%2520portrait&width=40&height=40&seq=35&orientation=squarish',
-      quote: 'This platform has given us unprecedented insights into market opportunities.',
-    },
+
   },
   {
     title: 'Student Success Tracking System',
@@ -121,12 +102,7 @@ const projects = [
     category: 'healthcare',
     date: 'August 2024',
     image: 'https://readdy.ai/api/search-image?query=Medical%2520research%2520database%2520interface%2520with%2520clinical%2520data%2520visualization%252C%2520healthcare%2520analytics%2520dashboard%252C%2520medical%2520research%2520platform%2520with%2520professional%2520clean%2520design%252C%2520blue%2520medical%2520themed%2520elements&width=600&height=400&seq=38&orientation=landscape',
-    testimonial: {
-      name: 'Dr. Lisa Wang',
-      position: 'Research Director, Medical Research Institute',
-      image: 'https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520female%2520medical%2520researcher%252C%2520lab%2520coat%252C%2520confident%2520expression%252C%2520research%2520facility%2520background%252C%2520healthcare%2520professional%2520portrait&width=40&height=40&seq=39&orientation=squarish',
-      quote: 'The database has accelerated our research capabilities tremendously.',
-    },
+
   },
   {
     title: 'Smart Home Real Estate App',
@@ -141,12 +117,7 @@ const projects = [
     category: 'education',
     date: 'June 2024',
     image: 'https://readdy.ai/api/search-image?query=Virtual%2520campus%2520tour%2520interface%2520with%25203D%2520university%2520visualization%252C%2520interactive%2520educational%2520facility%2520exploration%252C%2520virtual%2520tour%2520platform%2520with%2520clean%2520professional%2520design%252C%2520blue%2520education%2520themed%2520elements&width=600&height=400&seq=41&orientation=landscape',
-    testimonial: {
-      name: 'Michael Johnson',
-      position: 'Director of Admissions, Tech University',
-      image: 'https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520male%2520university%2520administrator%252C%2520business%2520casual%2520attire%252C%2520friendly%2520expression%252C%2520campus%2520office%2520background%252C%2520education%2520professional%2520portrait&width=40&height=40&seq=42&orientation=squarish',
-      quote: 'Prospective students love exploring our campus virtually before visiting.',
-    },
+
   },
   {
     title: 'Cybersecurity Monitoring System',
@@ -309,22 +280,7 @@ const TABS = [
                     </div>
                     <h3 className="text-xl font-bold text-gray-800 mb-2">{project.title}</h3>
                     <p className="text-gray-600 mb-4">{project.description}</p>
-                    {project.testimonial && (
-                      <div className="mb-4 border-t border-gray-100 pt-4">
-                        <div className="flex items-center">
-                          <img
-                            src={project.testimonial.image}
-                            alt={project.testimonial.name}
-                            className="w-8 h-8 rounded-full mr-2"
-                            />
-                          <div className="flex-1">
-                            <p className="text-sm text-gray-800 font-medium">{project.testimonial.name}</p>
-                            <p className="text-xs text-gray-600">{project.testimonial.position}</p>
-                          </div>
-                        </div>
-
-                      </div>
-                    )}
+                   
 
                   </div>
                 </div>

@@ -8,7 +8,7 @@ const stats = [
 ];
 
 const About = () => (
-    <section id='about' className="py-20 bg-gray-50">
+    <section id="about" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Left Content */}
@@ -30,9 +30,11 @@ const About = () => (
                             </div>
                         ))}
                     </div>
-                    <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 whitespace-nowrap cursor-pointer">
-                        Learn More About Us
-                    </button>
+                    <a href="https://greathire.in/about">
+                        <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 whitespace-nowrap cursor-pointer">
+                            Learn More About Us
+                        </button>
+                    </a>
                 </div>
                 {/* Right Content */}
                 <div className="relative">
@@ -42,9 +44,9 @@ const About = () => (
                         className="rounded-xl shadow-lg w-full"
                     />
                     <div className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-3 max-w-xs">
-                        <div className="flex items-center ">
+                        <div className="flex items-center">
                             <div className="flex text-yellow-400">
-                                {[...Array(5)].map((_, i) => (
+                                {Array.from({ length: 5 }).map((_, i) => (
                                     <svg
                                         key={i}
                                         className="w-5 h-5 fill-current"
@@ -56,15 +58,12 @@ const About = () => (
                             </div>
                             <span className="ml-2 text-gray-600">5.0 Rating</span>
                         </div>
-                        <p className="text-gray-700 italic">
+                        <p className="text-gray-700 italic mt-2">
                             "GREATHIRE transformed our business with their innovative solutions and exceptional service."
                         </p>
-                        <div className="mt-4 flex items-center">
-                            
-                         <div>
-                                <p className="font-medium text-gray-800">Sarah Johnson</p>
-                                <p className="text-sm text-gray-600">CEO, TechVision Inc.</p>
-                            </div>
+                        <div className="mt-4">
+                            <p className="font-medium text-gray-800">Sarah Johnson</p>
+                            <p className="text-sm text-gray-600">CEO, TechVision Inc.</p>
                         </div>
                     </div>
                 </div>
