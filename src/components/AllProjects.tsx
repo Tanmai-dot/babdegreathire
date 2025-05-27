@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import Header from './Header';
 
 const AllProjects: React.FC = () => {
   const [activeTab, setActiveTab] = useState('all');
-  const navigate = useNavigate();
+ //const navigate= useNavigate
   const [isLoading, setIsLoading] = useState(false);
   const [visibleProjects, setVisibleProjects] = useState(9);
   

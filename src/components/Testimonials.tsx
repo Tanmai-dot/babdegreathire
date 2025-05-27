@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Font Awesome
 
 import CityBg from '../assets/wallpaper.jpg'; // Adjust path if needed
@@ -170,10 +170,10 @@ const TestimonialsPage: React.FC = () => {
                         {/* You probably want to show reviews here */}
                     </p>
                 </div>
-                <TestimonialsCarousel reviews={reviews} title="" />
+                <TestimonialsCarousel reviews={reviews}/>
                 <div className="mt-20">
                     <h2 className="text-4xl pb-10 font-bold text-blue-50 mb-6 text-center">Our Team Stories</h2>
-                    <TestimonialsCarousel reviews={teamStories} title="" />
+                        <TestimonialsCarousel reviews={teamStories}/>
                 </div>
             </div>
         </section>

@@ -1,14 +1,14 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const navLinks = [
-    { id: 'home', label: 'Home' },
-    { id: 'industries', label: 'Industries' },
-    { id: 'services', label: 'Services' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'about', label: 'About' },
-    { id: 'contact', label: 'Contact' },
-];
+// const navLinks = [
+//     { id: 'home', label: 'Home' },
+//     { id: 'industries', label: 'Industries' },
+//     { id: 'services', label: 'Services' },
+//     { id: 'projects', label: 'Projects' },
+//     { id: 'about', label: 'About' },
+//     { id: 'contact', label: 'Contact' },
+// ];
 
 const socialLinks = [
     {
@@ -169,7 +169,7 @@ const Footer: React.FC = () => {
             <div className="pt-8 border-t border-gray-800 text-center">
                 <p className="text-gray-500">© 2025 GREATHIRE. All rights reserved.</p>
                 <div className="flex justify-center space-x-6 mt-4">
-                    {footerLinks.map(({ href, text }) => (
+                    {footerLinks.map(({ text }) => (
                         <a
                             key={text}
                             href={'https://greathire.in/policy/privacy-policy'}
