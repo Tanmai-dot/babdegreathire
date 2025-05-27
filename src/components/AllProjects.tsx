@@ -293,13 +293,7 @@ const TABS = [
       {/* Projects Grid */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
-          <div
-      className={
-        activeTab === "digitalmarketing"
-          ? "flex flex-row gap-8 overflow-x-auto pb-4"
-          : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-      }
-    >
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
       {filteredProjects.map((project, index) => {
         const cat = getCategoryStyles(project.category);
         return (
