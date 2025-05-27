@@ -3,6 +3,15 @@ import React from 'react';
 
 const industries = [
     {
+        title: 'Staffing & Recruitment',
+        icon: 'fas fa-shield-alt',
+        image:
+            'https://cdn.pixabay.com/photo/2019/04/16/11/15/job-4131482_1280.jpg',
+        alt: 'Education',
+        description:
+            'Tailored hiring services to connect businesses with top talent and streamline the recruitment process.',
+    },
+    {
         title: 'Information Technology',
         icon: 'fas fa-laptop-code',
         image:
@@ -18,7 +27,7 @@ const industries = [
             'https://cdn.pixabay.com/photo/2021/10/18/19/34/social-media-6721926_1280.png',
         alt: 'Healthcare',
         description:
-            'Hospital management systems, patient portals, and medical practice websites with HIPAA compliance.',
+            'Effective strategies to grow your brand, reach the right audience, and boost conversions through SEO, social media, and content.',
     },
     {
         title: 'Real Estate',
@@ -36,7 +45,7 @@ const industries = [
             'https://cdn.pixabay.com/photo/2020/05/21/05/28/security-5199236_1280.jpg',
         alt: 'Education',
         description:
-            'Hostel management systems, campus solutions, and educational institution websites.',
+            'Protecting digital assets through advanced security measures, ensuring data privacy, threat detection, and secure infrastructure for businesses of all sizes.',
     },
 ];
 
@@ -51,7 +60,7 @@ const Industries: React.FC = () => (
                     We deliver exceptional digital solutions across multiple industries, tailoring our approach to meet the unique challenges and opportunities of each sector.
                 </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
                 {industries.map(({ title, icon, image, alt, description }) => (
                     <div
                         key={title}

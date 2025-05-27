@@ -8,7 +8,7 @@ const Footer = () => {
                     {/* Brand & Social */}
                     <div>
                         <h2 className="text-2xl font-bold mb-6">
-                            GREAT<span className="text-blue-400">HIRE</span>
+                            GREAT<span className="text-blue-700">HIRE</span>
                         </h2>
                         <p className="text-gray-400 mb-6">
                             Transforming businesses with cutting-edge technology solutions and digital expertise.
@@ -51,12 +51,17 @@ const Footer = () => {
                         <ul className="space-y-3">
                             <li>
                                 <a href="#" className="text-gray-400 hover:text-white transition duration-300 cursor-pointer">
+                                    Staffing & Recruitment
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="text-gray-400 hover:text-white transition duration-300 cursor-pointer">
                                     Information Technology
                                 </a>
                             </li>
                             <li>
                                 <a href="#" className="text-gray-400 hover:text-white transition duration-300 cursor-pointer">
-                                    Healthcare
+                                    Digital Marketing
                                 </a>
                             </li>
                             <li>
@@ -66,14 +71,10 @@ const Footer = () => {
                             </li>
                             <li>
                                 <a href="#" className="text-gray-400 hover:text-white transition duration-300 cursor-pointer">
-                                    Education
+                                    Cyber Security
                                 </a>
                             </li>
-                            <li>
-                                <a href="#" className="text-gray-400 hover:text-white transition duration-300 cursor-pointer">
-                                    E-commerce
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
 
@@ -81,6 +82,11 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-semibold mb-6">Services</h3>
                         <ul className="space-y-3">
+                            <li>
+                                <a href="#" className="text-gray-400 hover:text-white transition duration-300 cursor-pointer">
+                                    Staffing & Recruitment
+                                </a>
+                            </li>
                             <li>
                                 <a href="#" className="text-gray-400 hover:text-white transition duration-300 cursor-pointer">
                                     Web Development
@@ -98,12 +104,12 @@ const Footer = () => {
                             </li>
                             <li>
                                 <a href="#" className="text-gray-400 hover:text-white transition duration-300 cursor-pointer">
-                                    UI/UX Design
+                                    Cloud Solutions
                                 </a>
                             </li>
                             <li>
                                 <a href="#" className="text-gray-400 hover:text-white transition duration-300 cursor-pointer">
-                                    Cloud Solutions
+                                    AI Solutions & Voice Agents
                                 </a>
                             </li>
                         </ul>
