@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-
 // Tabs (keys must match the 'category' in your projects array)
 const TABS = [
   { key: 'all', label: 'All Projects' },
@@ -31,21 +30,28 @@ const PROJECTS: Project[] =
 [
   {
     title: 'AI-Powered Analytics Platform',
-    description: 'A robust analytics platform using advanced machine learning for predictive insights. Features real-time dashboards, anomaly detection, and seamless integration, empowering organizations to make faster, data-driven decisions securely. The platform supports automated data cleaning, customizable reporting, and is designed for scalability and security, supporting both cloud and on-premise deployments.',
+    description: `A robust analytics platform using advanced machine learning for predictive insights. Features real-time dashboards, anomaly detection, and seamless integration, empowering organizations to make faster, data-driven decisions securely.
+
+The platform supports automated data cleaning, customizable reporting, and is designed for scalability and security, supporting both cloud and on-premise deployments.`,
     category: 'it',
     date: 'May 2025',
     image: 'https://readdy.ai/api/search-image?query=Advanced%2520AI%2520visualization%2520interface%2520with%2520neural%2520networks%252C%2520machine%2520learning%2520algorithms%2520display%252C%2520futuristic%2520technology%2520dashboard%2520with%2520blue%2520glowing%2520elements%252C%2520professional%2520AI%2520system%2520interface&width=600&height=400&seq=11&orientation=landscape',
   },
   {
     title: 'Hospital Management System',
-    description: 'Integrated hospital system for patient management, scheduling, billing, and telemedicine. Automates appointments, secures data, and provides analytics for administrators, improving efficiency and patient care across departments. The system also features role-based access, inventory management, and a user-friendly interface for both staff and patients.',
+    description: `Integrated hospital system for patient management, scheduling, billing, and telemedicine. Automates appointments, secures data, and provides analytics for administrators, improving efficiency and patient care across departments.
+
+The system also features role-based access, inventory management, and a user-friendly interface for both staff and patients.`,
     category: 'healthcare',
     date: 'April 2025',
     image: 'https://readdy.ai/api/search-image?query=Modern%2520hospital%2520management%2520system%2520interface%252C%2520patient%2520records%2520dashboard%252C%2520medical%2520scheduling%2520application%252C%2520healthcare%2520software%2520with%2520clean%2520design%252C%2520professional%2520medical%2520interface%2520with%2520blue%2520color%2520scheme&width=600&height=400&seq=7&orientation=landscape',
   },
   {
     title: 'Real Estate Platform',
-    description: 'Property management and listing platform with 3D virtual tours, advanced search, agent dashboards, and secure transactions. Supports analytics, lead management, and automated notifications for buyers and sellers. The platform integrates payment gateways, document management, and provides immersive experiences for property seekers.',    category: 'realestate',
+    description: `Property management and listing platform with 3D virtual tours, advanced search, agent dashboards, and secure transactions. Supports analytics, lead management, and automated notifications for buyers and sellers.
+
+The platform integrates payment gateways, document management, and provides immersive experiences for property seekers.`,
+    category: 'realestate',
     date: 'March 2025',
     image: 'https://readdy.ai/api/search-image?query=Modern%2520real%2520estate%2520property%2520listing%2520platform%252C%2520property%2520management%2520dashboard%252C%2520real%2520estate%2520application%2520with%2520map%2520integration%252C%2520professional%2520interface%2520with%2520blue%2520color%2520scheme%252C%2520property%2520booking%2520system&width=600&height=400&seq=8&orientation=landscape',
   },
@@ -58,7 +64,9 @@ const PROJECTS: Project[] =
   },
   {
     title: 'Cloud Migration & DevOps',
-    description: 'Migrated legacy systems to cloud with CI/CD pipelines, automated deployments, and monitoring. Ensured high availability, security, cost optimization, and trained teams on DevOps best practices. The project included disaster recovery planning and infrastructure monitoring for mission-critical applications.',
+    description: `Migrated legacy systems to cloud with CI/CD pipelines, automated deployments, and monitoring. Ensured high availability, security, cost optimization, and trained teams on DevOps best practices.
+
+The project included disaster recovery planning and infrastructure monitoring for mission-critical applications.`,
     category: 'it',
     date: 'January 2025',
     image: 'https://readdy.ai/api/search-image?query=Cloud%2520infrastructure%2520visualization%252C%2520DevOps%2520pipeline%2520dashboard%252C%2520cloud%2520architecture%2520diagram%2520with%2520modern%2520interface%252C%2520professional%2520cloud%2520computing%2520system%2520with%2520blue%2520and%2520white%2520design%2520elements&width=600&height=400&seq=32&orientation=landscape',
@@ -199,6 +207,24 @@ const Projects: React.FC = () => {
       ? PROJECTS.slice(0, visibleCount)
       : PROJECTS.filter(project => project.category === activeTab).slice(0, 3);
 
+  // Category styles helper function
+  const getCategoryStyles = (category: string) => {
+    switch (category) {
+      case 'it':
+        return { bg: 'bg-purple-100', text: 'text-purple-800', label: 'IT & Software' };
+      case 'healthcare':
+        return { bg: 'bg-green-100', text: 'text-green-800', label: 'Healthcare' };
+      case 'realestate':
+        return { bg: 'bg-yellow-100', text: 'text-yellow-800', label: 'Real Estate' };
+      case 'education':
+        return { bg: 'bg-blue-100', text: 'text-blue-800', label: 'Education' };
+      case 'digitalmarketing':
+        return { bg: 'bg-pink-100', text: 'text-pink-800', label: 'Digital Marketing' };
+      default:
+        return { bg: 'bg-gray-100', text: 'text-gray-800', label: 'Other' };
+    }
+  };
+
   return (
     <section id='projects' className="py-20 bg-white">
       <div className="container mx-auto px-6">
@@ -230,49 +256,54 @@ const Projects: React.FC = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, idx) => (
-            <div
-              key={project.title + idx}
-              className="bg-white rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:shadow-xl hover:-translate-y-2"
-            >
-              <div className="h-56 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-medium px-2.5 py-0.5 rounded bg-gray-100 text-gray-800">
-                    {project.category}
-                  </span>
-                  <span className="text-gray-500 text-sm">{project.date}</span>
+          {filteredProjects.map((project, index) => {
+            const cat = getCategoryStyles(project.category);
+            return (
+              <div
+                key={index}
+                className="bg-white rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:shadow-xl hover:-translate-y-2"
+              >
+                <div className="h-64 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top"
+                  />
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{project.title}</h3>
-                <p className="text-gray-600 mb-4">{project.description}</p>
-                {project.testimonial && (
-                  <div className="mb-4 border-t border-gray-100 pt-4">
-                    <div className="flex items-center">
-                      <img
-                        src={project.testimonial.image}
-                        alt={project.testimonial.name}
-                        className="w-8 h-8 rounded-full mr-2"
-                      />
-                      <div>
-                        <p className="text-sm text-gray-800 font-medium">{project.testimonial.name}</p>
-                        <p className="text-xs text-gray-600">{project.testimonial.position}</p>
-                      </div>
-                    </div>
-                    <p className="text-sm text-gray-600 italic mt-2">
-                      "{project.testimonial.quote}"
-                    </p>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className={`${cat.bg} ${cat.text} text-xs font-medium px-2.5 py-0.5 rounded`}>
+                      {cat.label}
+                    </span>
+                    <span className="text-gray-500 text-sm">{project.date}</span>
                   </div>
-                )}
+                  <h3 className="text-xl font-bold text-gray-800 mb-2">{project.title}</h3>
+                  {project.description.split('\n\n').map((para, i) => (
+                    <p className="text-gray-600 mb-4" key={i}>{para}</p>
+                  ))}
+                  {project.testimonial && (
+                    <div className="mb-4 border-t border-gray-100 pt-4">
+                      <div className="flex items-center">
+                        <img
+                          src={project.testimonial.image}
+                          alt={project.testimonial.name}
+                          className="w-8 h-8 rounded-full mr-2"
+                        />
+                        <div>
+                          <p className="text-sm text-gray-800 font-medium">{project.testimonial.name}</p>
+                          <p className="text-xs text-gray-600">{project.testimonial.position}</p>
+                        </div>
+                      </div>
+                      <p className="text-sm text-gray-600 italic mt-2">
+                        "{project.testimonial.quote}"
+                      </p>
+                    </div>
+                  )}
 
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* View All Projects Button */}

@@ -28,24 +28,32 @@ const getCategoryStyles = (category: string) => {
 };
 
 // Project data
-const projects = [
+const projects = 
+[
   {
     title: 'AI-Powered Analytics Platform',
-    description: 'A robust analytics platform using advanced machine learning for predictive insights. Features real-time dashboards, anomaly detection, and seamless integration, empowering organizations to make faster, data-driven decisions securely. The platform supports automated data cleaning, customizable reporting, and is designed for scalability and security, supporting both cloud and on-premise deployments.',
+    description: `A robust analytics platform using advanced machine learning for predictive insights. Features real-time dashboards, anomaly detection, and seamless integration, empowering organizations to make faster, data-driven decisions securely.
+
+The platform supports automated data cleaning, customizable reporting, and is designed for scalability and security, supporting both cloud and on-premise deployments.`,
     category: 'it',
     date: 'May 2025',
     image: 'https://readdy.ai/api/search-image?query=Advanced%2520AI%2520visualization%2520interface%2520with%2520neural%2520networks%252C%2520machine%2520learning%2520algorithms%2520display%252C%2520futuristic%2520technology%2520dashboard%2520with%2520blue%2520glowing%2520elements%252C%2520professional%2520AI%2520system%2520interface&width=600&height=400&seq=11&orientation=landscape',
   },
   {
     title: 'Hospital Management System',
-    description: 'Integrated hospital system for patient management, scheduling, billing, and telemedicine. Automates appointments, secures data, and provides analytics for administrators, improving efficiency and patient care across departments. The system also features role-based access, inventory management, and a user-friendly interface for both staff and patients.',
+    description: `Integrated hospital system for patient management, scheduling, billing, and telemedicine. Automates appointments, secures data, and provides analytics for administrators, improving efficiency and patient care across departments.
+
+The system also features role-based access, inventory management, and a user-friendly interface for both staff and patients.`,
     category: 'healthcare',
     date: 'April 2025',
     image: 'https://readdy.ai/api/search-image?query=Modern%2520hospital%2520management%2520system%2520interface%252C%2520patient%2520records%2520dashboard%252C%2520medical%2520scheduling%2520application%252C%2520healthcare%2520software%2520with%2520clean%2520design%252C%2520professional%2520medical%2520interface%2520with%2520blue%2520color%2520scheme&width=600&height=400&seq=7&orientation=landscape',
   },
   {
     title: 'Real Estate Platform',
-    description: 'Property management and listing platform with 3D virtual tours, advanced search, agent dashboards, and secure transactions. Supports analytics, lead management, and automated notifications for buyers and sellers. The platform integrates payment gateways, document management, and provides immersive experiences for property seekers.',    category: 'realestate',
+    description: `Property management and listing platform with 3D virtual tours, advanced search, agent dashboards, and secure transactions. Supports analytics, lead management, and automated notifications for buyers and sellers.
+
+The platform integrates payment gateways, document management, and provides immersive experiences for property seekers.`,
+    category: 'realestate',
     date: 'March 2025',
     image: 'https://readdy.ai/api/search-image?query=Modern%2520real%2520estate%2520property%2520listing%2520platform%252C%2520property%2520management%2520dashboard%252C%2520real%2520estate%2520application%2520with%2520map%2520integration%252C%2520professional%2520interface%2520with%2520blue%2520color%2520scheme%252C%2520property%2520booking%2520system&width=600&height=400&seq=8&orientation=landscape',
   },
@@ -58,7 +66,9 @@ const projects = [
   },
   {
     title: 'Cloud Migration & DevOps',
-    description: 'Migrated legacy systems to cloud with CI/CD pipelines, automated deployments, and monitoring. Ensured high availability, security, cost optimization, and trained teams on DevOps best practices. The project included disaster recovery planning and infrastructure monitoring for mission-critical applications.',
+    description: `Migrated legacy systems to cloud with CI/CD pipelines, automated deployments, and monitoring. Ensured high availability, security, cost optimization, and trained teams on DevOps best practices.
+
+The project included disaster recovery planning and infrastructure monitoring for mission-critical applications.`,
     category: 'it',
     date: 'January 2025',
     image: 'https://readdy.ai/api/search-image?query=Cloud%2520infrastructure%2520visualization%252C%2520DevOps%2520pipeline%2520dashboard%252C%2520cloud%2520architecture%2520diagram%2520with%2520modern%2520interface%252C%2520professional%2520cloud%2520computing%2520system%2520with%2520blue%2520and%2520white%2520design%2520elements&width=600&height=400&seq=32&orientation=landscape',
@@ -168,7 +178,7 @@ const projects = [
     date: 'March 2025',
     image: 'https://readdy.ai/api/search-image?query=Real%2520estate%2520investment%2520analytics%2520dashboard%2520with%2520property%2520value%2520charts%252C%2520investment%2520portfolio%2520visualization%252C%2520property%2520market%2520analysis%2520interface%2520with%2520professional%2520design%252C%2520blue%2520accent%2520colors&width=600&height=400&seq=34&orientation=landscape',
   },
-];
+]; 
 
 const TABS = [
   { key: 'all', label: 'All Projects' },
@@ -276,8 +286,9 @@ const TABS = [
                       <span className="text-gray-500 text-sm">{project.date}</span>
                     </div>
                     <h3 className="text-xl font-bold text-gray-800 mb-2">{project.title}</h3>
-                    <p className="text-gray-600 mb-4">{project.description}</p>
-
+                    {project.description.split('\n\n').map((para, i) => (
+  <p className="text-gray-600 mb-4" key={i}>{para}</p>
+))}
 
                   </div>
                 </div>
