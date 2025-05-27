@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const stats = [
     { value: '200+', label: 'Projects Completed' },

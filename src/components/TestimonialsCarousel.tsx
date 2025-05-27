@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
+import React, {  useRef, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import CardBgImg from '../assets/White and Blue.png';
 
@@ -189,7 +189,7 @@ const moveCarousel = (direction: 'left' | 'right') => {
         {reviews.map((review, i) => (
           <li
             key={i}
-            ref={(el) => (cardsRef.current[i] = el)}
+            ref={(el) => { cardsRef.current[i] = el; }}
             className="w-[14rem] h-[18rem] rounded-lg bg-purple-500 text-white text-center flex items-center justify-center shadow-lg absolute top-0 left-0"
             style={{
               backgroundImage: `url(${CardBgImg})`,

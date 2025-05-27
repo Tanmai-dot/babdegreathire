@@ -9,7 +9,7 @@ import Projects from './components/Projects';
 import AllProjects from './components/AllProjects';
 import Companies from './components/Companies';
 import About from './components/About';
-import Contact from './components/Contact';
+
 import Footer from './components/Footer';
 import Testimonials from './components/Testimonials';
 import './App.css';
