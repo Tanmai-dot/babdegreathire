@@ -37,12 +37,12 @@ const About = () => (
                 {/* Right Content */}
                 <div className="relative">
                     <img
-                        src="https://readdy.ai/api/search-image?query=Professional%20diverse%20team%20working%20in%20modern%20tech%20office%2C%20collaborative%20workspace%20with%20developers%20and%20designers%2C%20team%20meeting%20with%20digital%20displays%2C%20clean%20contemporary%20office%20with%20blue%20accent%20lighting&width=600&height=500&seq=9&orientation=landscape"
+                        src="https://lh3.googleusercontent.com/p/AF1QipMR-CJa-HUn2WB8_8t_7z6_T5D-AmbIDWcbfN1i=s680-w680-h510-rw"
                         alt="GREATHIRE Team"
                         className="rounded-xl shadow-lg w-full"
                     />
-                    <div className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-6 max-w-xs">
-                        <div className="flex items-center mb-4">
+                    <div className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-3 max-w-xs">
+                        <div className="flex items-center ">
                             <div className="flex text-yellow-400">
                                 {[...Array(5)].map((_, i) => (
                                     <svg

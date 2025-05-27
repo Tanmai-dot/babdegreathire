@@ -16,14 +16,55 @@ type Service = {
 
 const services: Service[] = [
     {
+        icon: 'fas fa-suitcase',
+        title: 'Staffing & Recruitment',
+        description:
+        'Data-driven digital marketing solutions to help businesses grow their online presence, generate leads, and drive sales through innovative strategies.',
+        features: [
+            'Content Marketing & Blogging',
+            'Influencer & Affiliate Marketing',
+            'SEO (Search Engine Optimization',
+            'Email Campaign Automation',
+        ],
+        link: '#',
+    },
+    {
+        icon: 'fas fa-microchip',
+        title: 'AI Solutions & Voice Agents',
+        description:
+            'Intelligent systems that automate interactions, enhance customer support, and deliver personalized experiences using AI-powered voice and chat technologies',
+        features: [
+            'Conversational AI & Voice Assistants',
+            'Chatbot Development & Integration',
+            'AI-based Customer Support Solutions',
+            'Email Campaign Automation',
+        ],
+        link: '#',
+    },
+    {
+        icon: 'fas fa-cloud',
+        title: 'Cloud Solutions',
+        description:
+            'Robust cloud infrastructure and scalable solutions tailored for modern business needs.',
+        features: [
+            'AWS Cloud Architecture',
+            'Multi-Cloud Deployments (AWS, Azure, GCP)',
+            'Cloud Migration Services',
+            'Cloud Security & DevOps',
+            'Cost Optimization & Monitoring',
+        ],
+        link: '#',
+    },
+    {
         icon: 'fas fa-code',
         title: 'Web Development',
         description:
-            'Custom websites and web applications built with the latest technologies and best practices.',
+            'We build fast, responsive, and scalable websites and web applications using the latest technologies and development standards.',
         features: [
             'Frontend Development',
             'Backend Development',
             'Full Stack Solutions',
+            'Progressive Web Apps (PWAs)',
         ],
         link: '#',
         // Uncomment and fill if you want to show expert for this service
@@ -38,24 +79,13 @@ const services: Service[] = [
         icon: 'fas fa-mobile-alt',
         title: 'Mobile App Development',
         description:
-            'Native and cross-platform mobile applications for iOS and Android devices.',
+            'We create high-performance native and cross-platform mobile apps tailored for both iOS and Android, focused on user experience, speed, and functionality.',
         features: [
             'iOS Development',
             'Android Development',
             'React Native & Flutter',
-        ],
-        link: '#',
-    },
-    {
-        icon: 'fas fa-cloud',
-        title: 'Cloud & AI Solutions',
-        description:
-            'Advanced cloud infrastructure and AI-powered solutions for modern businesses.',
-        features: [
-            'AWS Cloud Architecture',
-            'Machine Learning Models',
-            'AI Integration Services',
-            'Cloud Security & DevOps',
+            'App Store & Play Store Deployment',
+
         ],
         link: '#',
     },
@@ -67,7 +97,7 @@ const services: Service[] = [
         features: [
             'Content Marketing & Blogging',
             'Influencer & Affiliate Marketing',
-            'SEO (Search Engine Optimization',
+            'SEO (Search Engine Optimization)',
             'Email Campaign Automation',
         ],
         link: '#',
@@ -75,7 +105,7 @@ const services: Service[] = [
 ];
 
 const Services = () => (
-    <section id='services' className="py-20 bg-gray-50">
+    <section id='services' className=" py-20 bg-gray-50">
         <div className="container mx-auto px-6">
             <div className="text-center mb-16">
                 <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Services</h2>
@@ -83,7 +113,7 @@ const Services = () => (
                     We offer comprehensive digital solutions tailored to your business needs, from development to marketing.
                 </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 {services.map((service, idx) => (
                     <div
                         key={service.title}
