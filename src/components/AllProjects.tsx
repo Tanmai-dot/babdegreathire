@@ -171,6 +171,14 @@ const projects = [
     image: 'https://cdn.pixabay.com/photo/2024/11/12/01/38/email-9191069_1280.png',
 
   },
+  {
+    title: 'Digital Marketing Analytics',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.',
+    category: 'digitalmarketing',
+    date: 'March 2025',
+    image: 'https://readdy.ai/api/search-image?query=Real%2520estate%2520investment%2520analytics%2520dashboard%2520with%2520property%2520value%2520charts%252C%2520investment%2520portfolio%2520visualization%252C%2520property%2520market%2520analysis%2520interface%2520with%2520professional%2520design%252C%2520blue%2520accent%2520colors&width=600&height=400&seq=34&orientation=landscape',
+
+  },
 ];
 
 const TABS = [
@@ -280,7 +288,22 @@ const TABS = [
                     </div>
                     <h3 className="text-xl font-bold text-gray-800 mb-2">{project.title}</h3>
                     <p className="text-gray-600 mb-4">{project.description}</p>
-                   
+                    {project.testimonial && (
+                      <div className="mb-4 border-t border-gray-100 pt-4">
+                        <div className="flex items-center">
+                          <img
+                            src={project.testimonial.image}
+                            alt={project.testimonial.name}
+                            className="w-8 h-8 rounded-full mr-2"
+                            />
+                          <div className="flex-1">
+                            <p className="text-sm text-gray-800 font-medium">{project.testimonial.name}</p>
+                            <p className="text-xs text-gray-600">{project.testimonial.position}</p>
+                          </div>
+                        </div>
+
+                      </div>
+                    )}
 
                   </div>
                 </div>
