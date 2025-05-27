@@ -187,6 +187,14 @@ const PROJECTS = [
     image: 'https://cdn.pixabay.com/photo/2024/11/12/01/38/email-9191069_1280.png',
 
   },
+  {
+    title: 'Digital Marketing Analytics',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.',
+    category: 'digitalmarketing',
+    date: 'March 2025',
+    image: 'https://readdy.ai/api/search-image?query=Real%2520estate%2520investment%2520analytics%2520dashboard%2520with%2520property%2520value%2520charts%252C%2520investment%2520portfolio%2520visualization%252C%2520property%2520market%2520analysis%2520interface%2520with%2520professional%2520design%252C%2520blue%2520accent%2520colors&width=600&height=400&seq=34&orientation=landscape',
+
+  },
 ];
 
 const Projects: React.FC = () => {

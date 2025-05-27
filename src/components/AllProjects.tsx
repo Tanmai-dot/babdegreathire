@@ -200,6 +200,14 @@ const projects = [
     image: 'https://cdn.pixabay.com/photo/2024/11/12/01/38/email-9191069_1280.png',
 
   },
+  {
+    title: 'Digital Marketing Analytics',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.',
+    category: 'digitalmarketing',
+    date: 'March 2025',
+    image: 'https://readdy.ai/api/search-image?query=Real%2520estate%2520investment%2520analytics%2520dashboard%2520with%2520property%2520value%2520charts%252C%2520investment%2520portfolio%2520visualization%252C%2520property%2520market%2520analysis%2520interface%2520with%2520professional%2520design%252C%2520blue%2520accent%2520colors&width=600&height=400&seq=34&orientation=landscape',
+
+  },
 ];
 
 const TABS = [
@@ -285,72 +293,75 @@ const TABS = [
       {/* Projects Grid */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => {
-              const cat = getCategoryStyles(project.category);
-              return (
-                <div
-                key={index}
-                className="bg-white rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:shadow-xl hover:-translate-y-2"
-                >
-                  <div className="h-64 overflow-hidden">
+          <div
+      className={
+        activeTab === "digitalmarketing"
+          ? "flex flex-row gap-8 overflow-x-auto pb-4"
+          : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      }
+    >
+      {filteredProjects.map((project, index) => {
+        const cat = getCategoryStyles(project.category);
+        return (
+          <div
+            key={index}
+            className="bg-white rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:shadow-xl hover:-translate-y-2 min-w-[340px] max-w-sm"
+          >
+            <div className="h-64 overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-3">
+                <span className={`${cat.bg} ${cat.text} text-xs font-medium px-2.5 py-0.5 rounded`}>
+                  {cat.label}
+                </span>
+                <span className="text-gray-500 text-sm">{project.date}</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">{project.title}</h3>
+              <p className="text-gray-600 mb-4">{project.description}</p>
+              {project.testimonial && (
+                <div className="mb-4 border-t border-gray-100 pt-4">
+                  <div className="flex items-center">
                     <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover object-top"
-                      />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className={`${cat.bg} ${cat.text} text-xs font-medium px-2.5 py-0.5 rounded`}>
-                        {cat.label}
-                      </span>
-                      <span className="text-gray-500 text-sm">{project.date}</span>
+                      src={project.testimonial.image}
+                      alt={project.testimonial.name}
+                      className="w-8 h-8 rounded-full mr-2"
+                    />
+                    <div className="flex-1">
+                      <p className="text-sm text-gray-800 font-medium">{project.testimonial.name}</p>
+                      <p className="text-xs text-gray-600">{project.testimonial.position}</p>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-800 mb-2">{project.title}</h3>
-                    <p className="text-gray-600 mb-4">{project.description}</p>
-                    {project.testimonial && (
-                      <div className="mb-4 border-t border-gray-100 pt-4">
-                        <div className="flex items-center">
-                          <img
-                            src={project.testimonial.image}
-                            alt={project.testimonial.name}
-                            className="w-8 h-8 rounded-full mr-2"
-                            />
-                          <div className="flex-1">
-                            <p className="text-sm text-gray-800 font-medium">{project.testimonial.name}</p>
-                            <p className="text-xs text-gray-600">{project.testimonial.position}</p>
-                          </div>
-                        </div>
-
-                      </div>
-                    )}
-
                   </div>
                 </div>
-              );
-            })}
-          </div>
-
-          {/* Load More Button */}
-          {filteredProjects.length < totalFiltered && (
-            <div className="text-center mt-12">
-              <button
-                onClick={loadMoreProjects}
-                disabled={isLoading}
-                className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 !rounded-button whitespace-nowrap cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center mx-auto"
-                >
-                {isLoading ? (
-                  <>
-                    <i className="fas fa-circle-notch fa-spin mr-2"></i>
-                    Loading...
-                  </>
-                ) : (
-                  'Load More Projects'
-                )}
-              </button>
+              )}
             </div>
+          </div>
+        );
+      })}
+    </div>
+    {/* Load More Button */}
+    {filteredProjects.length < totalFiltered && (
+      <div className="text-center mt-12">
+        <button
+          onClick={loadMoreProjects}
+          disabled={isLoading}
+          className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 !rounded-button whitespace-nowrap cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center mx-auto"
+          >
+          {isLoading ? (
+            <>
+              <i className="fas fa-circle-notch fa-spin mr-2"></i>
+              Loading...
+            </>
+          ) : (
+            'Load More Projects'
           )}
+        </button>
+      </div>
+    )}
         </div>
       </section>
 
