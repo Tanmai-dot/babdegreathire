@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 type Service = {
     icon: string;
@@ -114,7 +114,7 @@ const Services = () => (
                 </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                {services.map((service, idx) => (
+                {services.map((service) => (
                     <div
                         key={service.title}
                         className="bg-white rounded-xl shadow p-8 transition-all duration-300 hover:shadow-lg"

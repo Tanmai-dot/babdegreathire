@@ -13,7 +13,21 @@ const TABS = [
 ];
 
 // Full project list from paste.txt, with correct category keys
-const PROJECTS = [
+type Project = {
+  title: string;
+  description: string;
+  category: string;
+  date: string;
+  image: string;
+  testimonial?: {
+    image: string;
+    name: string;
+    position: string;
+    quote: string;
+  };
+};
+
+const PROJECTS: Project[] = [
   {
     title: 'AI-Powered Analytics Platform',
     description: 'Advanced analytics platform using machine learning for predictive business intelligence.',
