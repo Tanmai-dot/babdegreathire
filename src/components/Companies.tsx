@@ -62,17 +62,48 @@ const companyLogos = [
     { src: zeelmedia },
 ];
 
-const CARDS_PER_ROW = 4;
 const CARD_WIDTH = 210; // px
 const CARD_HEIGHT = 130; // px
+
+// Responsive cards per row based on screen width
+function useCardsPerRow() {
+    const [cardsPerRow, setCardsPerRow] = useState(getCardsPerRow());
+
+    useEffect(() => {
+        function handleResize() {
+            setCardsPerRow(getCardsPerRow());
+        }
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return cardsPerRow;
+}
+
+function getCardsPerRow() {
+    if (typeof window === 'undefined') return 2;
+    const width = window.innerWidth;
+    if (width < 640) return 1; // mobile
+    if (width < 1024) return 2; // tablet
+    if (width < 1280) return 3; // small desktop
+    return 4; // large desktop
+}
 
 // Split the logos into two halves (top and bottom)
 const half = Math.ceil(companyLogos.length / 2);
 const topLogos = companyLogos.slice(0, half);
 const bottomLogos = companyLogos.slice(half);
 
-function useScrollingCards(logos: typeof companyLogos, interval = 3000) {
+function useScrollingCards(
+    logos: typeof companyLogos,
+    cardsPerRow: number,
+    interval = 3000
+) {
     const [startIdx, setStartIdx] = useState(0);
+
+    useEffect(() => {
+        setStartIdx(0); // Reset index when cardsPerRow changes
+    }, [cardsPerRow, logos.length]);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -82,24 +113,29 @@ function useScrollingCards(logos: typeof companyLogos, interval = 3000) {
     }, [logos.length, interval]);
 
     // Get the visible cards, wrapping around the array
-    return Array.from({ length: CARDS_PER_ROW }, (_, i) =>
+    return Array.from({ length: cardsPerRow }, (_, i) =>
         logos[(startIdx + i) % logos.length]
     );
 }
 
-const LogoRow: React.FC<{ logos: { src: string }[]; rowKey: string }> = ({
-    logos,
-    rowKey,
-}) => (
-    <div className="flex justify-center gap-10 mb-8">
+const LogoRow: React.FC<{
+    logos: { src: string }[];
+    rowKey: string;
+    cardsPerRow: number;
+}> = ({ logos, rowKey, cardsPerRow }) => (
+    <div
+        className={`flex justify-center gap-4 sm:gap-6 md:gap-8 mb-8 flex-wrap`}
+    >
         {logos.map((logo, idx) => (
             <div
                 key={`${rowKey}-${idx}`}
                 className="bg-white rounded-xl shadow-md flex flex-col items-center justify-center transition-transform duration-300 hover:scale-105 hover:shadow-xl"
                 style={{
-                    minWidth: `${CARD_WIDTH}px`,
+                    minWidth: '0',
+                    width: `min(90vw, ${CARD_WIDTH}px)`,
                     maxWidth: `${CARD_WIDTH}px`,
                     height: `${CARD_HEIGHT}px`,
+                    flex: `1 1 ${100 / cardsPerRow}%`,
                 }}
             >
                 <img
@@ -114,12 +150,13 @@ const LogoRow: React.FC<{ logos: { src: string }[]; rowKey: string }> = ({
 );
 
 const Companies: React.FC = () => {
-    const topRow = useScrollingCards(topLogos, 3000);
-    const bottomRow = useScrollingCards(bottomLogos, 3000);
+    const cardsPerRow = useCardsPerRow();
+    const topRow = useScrollingCards(topLogos, cardsPerRow, 3000);
+    const bottomRow = useScrollingCards(bottomLogos, cardsPerRow, 3000);
 
     return (
         <section id="companies" className="py-16 bg-gray-50">
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-2 sm:px-4 md:px-6">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold text-gray-800 mb-4">
                         Trusted by Industry Leaders
@@ -129,8 +166,8 @@ const Companies: React.FC = () => {
                     </p>
                 </div>
 
-                <LogoRow logos={topRow} rowKey="top" />
-                <LogoRow logos={bottomRow} rowKey="bottom" />
+                <LogoRow logos={topRow} rowKey="top" cardsPerRow={cardsPerRow} />
+                <LogoRow logos={bottomRow} rowKey="bottom" cardsPerRow={cardsPerRow} />
 
                 <div className="mt-12 text-center">
                     <p className="text-gray-600">
