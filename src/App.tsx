@@ -44,6 +44,7 @@ const HomePage = () => (
     <Testimonials />
     {/* <Contact /> */}
     <Footer />
+    <div id="mobile-contact-end" className="h-1" />
   </div>
 );
 

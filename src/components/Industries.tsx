@@ -45,7 +45,16 @@ const industries = [
             'https://cdn.pixabay.com/photo/2020/05/21/05/28/security-5199236_1280.jpg',
         alt: 'Education',
         description:
-            'Protecting digital assets through advanced security measures, ensuring data privacy, threat detection, and secure infrastructure for businesses of all sizes.',
+            'Safeguarding digital systems, networks, and data with advanced defense strategies and proactive threat prevention.',
+    },
+    {
+        title: 'HVAC',
+        icon: 'fas fa-snowflake',
+        image:
+            'https://images.pexels.com/photos/2539462/pexels-photo-2539462.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        alt: 'Education',
+        description:
+            'Delivering efficient climate control for comfortable, healthy environments in homes, offices, and industries.',
     },
 ];
 
@@ -60,7 +69,7 @@ const Industries: React.FC = () => (
                     We deliver exceptional digital solutions across multiple industries, tailoring our approach to meet the unique challenges and opportunities of each sector.
                 </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3">
                 {industries.map(({ title, icon, image, alt, description }) => (
                     <div
                         key={title}

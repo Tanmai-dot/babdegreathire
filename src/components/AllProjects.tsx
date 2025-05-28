@@ -236,26 +236,49 @@ const TABS = [
           </div>
         </div>
       </section>
-
-      {/* Filtering System */}
+      {/* Filtering System (Responsive) */}
       <section className="py-8 bg-gray-50 sticky top-16 z-40 border-y border-gray-200 shadow-sm">
         <div className="container mx-auto px-6">
           <div className="flex justify-center">
-            <div className="inline-flex bg-white rounded-lg shadow-sm p-1">
-              {TABS.map((tab) => (
-                <button
-                key={tab.key}
-                onClick={() => handleTabChange(tab.key)}
-                className={`px-6 py-3 rounded-lg text-sm font-medium transition-colors duration-200 whitespace-nowrap cursor-pointer ${
-                  activeTab === tab.key
-                  ? 'bg-blue-600 text-white'
-                  : 'text-gray-700 hover:bg-gray-100'
-                  }`}
-                  >
-                  {tab.label}
-                </button>
-              ))}
+        <div className="w-full max-w-2xl">
+          {/* Desktop Tabs */}
+          <div className="hidden sm:flex justify-center">
+            <div className="inline-flex bg-white rounded-lg shadow-sm p-1 w-full flex-wrap gap-2">
+          {TABS.map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => handleTabChange(tab.key)}
+              className={`px-6 py-3 rounded-lg text-sm font-medium transition-colors duration-200 whitespace-nowrap cursor-pointer ${
+            activeTab === tab.key
+              ? 'bg-blue-600 text-white'
+              : 'text-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
             </div>
+          </div>
+          {/* Mobile Dropdown */}
+          <div className="sm:hidden">
+            <label htmlFor="project-category-select" className="sr-only">
+              Select project category
+            </label>
+            <select
+          id="project-category-select"
+          aria-label="Select project category"
+          value={activeTab}
+          onChange={(e) => handleTabChange(e.target.value)}
+          className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-700 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+          {TABS.map((tab) => (
+            <option key={tab.key} value={tab.key}>
+              {tab.label}
+            </option>
+          ))}
+            </select>
+          </div>
+        </div>
           </div>
         </div>
       </section>

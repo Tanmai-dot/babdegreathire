@@ -34,6 +34,7 @@ const industries = [
     'Digital Marketing',
     'Real Estate',
     'Cyber Security',
+    'HVAC',
 ];
 
 const services = [

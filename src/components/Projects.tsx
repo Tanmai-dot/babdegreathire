@@ -234,23 +234,39 @@ const Projects: React.FC = () => {
             Explore our portfolio of successful projects across various industries.
           </p>
         </div>
-
         {/* Tabs */}
         <div className="flex justify-center mb-10">
-          <div className="inline-flex bg-gray-100 rounded-lg p-1">
+          {/* Tabs for medium and up */}
+          <div className="hidden sm:inline-flex bg-gray-100 rounded-lg p-1 flex-wrap gap-2 sm:gap-0">
             {TABS.map(tab => (
               <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 whitespace-nowrap cursor-pointer ${
-                  activeTab === tab.key
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-700 hover:bg-gray-200'
-                }`}
+          key={tab.key}
+          onClick={() => setActiveTab(tab.key)}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 whitespace-nowrap cursor-pointer ${
+            activeTab === tab.key
+              ? 'bg-blue-600 text-white'
+              : 'text-gray-700 hover:bg-gray-200'
+          }`}
+          style={{ minWidth: '120px' }}
               >
-                {tab.label}
+          {tab.label}
               </button>
             ))}
+          </div>
+          {/* Dropdown for small screens */}
+          <div className="w-full sm:hidden">
+            <select
+              aria-label="Select project category"
+              className="w-full px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-700 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={activeTab}
+              onChange={e => setActiveTab(e.target.value)}
+            >
+              {TABS.map(tab => (
+          <option key={tab.key} value={tab.key}>
+            {tab.label}
+          </option>
+              ))}
+            </select>
           </div>
         </div>
 

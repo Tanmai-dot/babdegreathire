@@ -2,7 +2,9 @@
 
 const HeroSection = () => {
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const isMobile = window.innerWidth < 768;
+    const targetId = isMobile && id === 'contact' ? 'mobile-contact-end' : id;
+    document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -29,10 +31,10 @@ const HeroSection = () => {
           </p>
           <div className="flex flex-wrap gap-4">
             <button
-              onClick={() => scrollToSection("projects")}
+              onClick={() => scrollToSection("services")}
               className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 !rounded-button whitespace-nowrap cursor-pointer"
             >
-              Explore Our Work
+              Explore Our Services
             </button>
             <button
               onClick={() => scrollToSection("contact")}

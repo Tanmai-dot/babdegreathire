@@ -142,8 +142,8 @@ const Services = () => (
                         <h3 className="text-xl font-bold text-gray-800 mb-3">{service.title}</h3>
                         <p className="text-gray-600 mb-4">{service.description}</p>
                         <ul className="text-gray-600 space-y-2 mb-6">
-                            {service.features.map((feature) => (
-                                <li key={feature} className="flex items-center">
+                            {service.features.map((feature, idx) => (
+                                <li key={`${feature}-${idx}`} className="flex items-center">
                                     <i className="fas fa-check text-green-500 mr-2" />
                                     {feature}
                                 </li>
