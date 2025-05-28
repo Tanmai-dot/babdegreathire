@@ -41,31 +41,8 @@ const About = () => (
                     <img
                         src="https://lh3.googleusercontent.com/p/AF1QipMR-CJa-HUn2WB8_8t_7z6_T5D-AmbIDWcbfN1i=s680-w680-h510-rw"
                         alt="GREATHIRE Team"
-                        className="rounded-xl shadow-lg w-full"
+                        className="rounded-xl shadow-lg w-full transition-transform duration-700 ease-in-out hover:scale-105"
                     />
-                    <div className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-3 max-w-xs">
-                        <div className="flex items-center">
-                            <div className="flex text-yellow-400">
-                                {Array.from({ length: 5 }).map((_, i) => (
-                                    <svg
-                                        key={i}
-                                        className="w-5 h-5 fill-current"
-                                        viewBox="0 0 20 20"
-                                    >
-                                        <polygon points="10,1 12.59,7.36 19.51,7.64 14,12.14 15.82,18.99 10,15.27 4.18,18.99 6,12.14 0.49,7.64 7.41,7.36" />
-                                    </svg>
-                                ))}
-                            </div>
-                            <span className="ml-2 text-gray-600">5.0 Rating</span>
-                        </div>
-                        <p className="text-gray-700 italic mt-2">
-                            "GREATHIRE transformed our business with their innovative solutions and exceptional service."
-                        </p>
-                        <div className="mt-4">
-                            <p className="font-medium text-gray-800">Sarah Johnson</p>
-                            <p className="text-sm text-gray-600">CEO, TechVision Inc.</p>
-                        </div>
-                    </div>
                 </div>
                 {/* End Right Content */}
             </div>
