@@ -69,13 +69,13 @@ const Industries: React.FC = () => (
                     We deliver exceptional digital solutions across multiple industries, tailoring our approach to meet the unique challenges and opportunities of each sector.
                 </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 {industries.map(({ title, icon, image, alt, description }) => (
                     <div
                         key={title}
                         className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-2 cursor-pointer"
                     >
-                        <div className="h-48 overflow-hidden">
+                        <div className="h-70 overflow-hidden">
                             <img
                                 src={image}
                                 alt={alt}
