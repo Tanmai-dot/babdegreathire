@@ -1,4 +1,8 @@
 
+import { useState, useEffect, useRef } from 'react';
+import video1 from '../assets/about/3251737-uhd_3840_2160_25fps.mp4';
+import video2 from '../assets/about/3255275-uhd_3840_2160_25fps.mp4';
+
 
 const stats = [
     { value: '200+', label: 'Projects Completed' },
@@ -7,7 +11,26 @@ const stats = [
     { value: '98%', label: 'Client Satisfaction' },
 ];
 
-const About = () => (
+const About = () => {
+ const [activeVideo, setActiveVideo] = useState(0); // 0 for video1, 1 for video2
+ const videoRefs = [useRef<HTMLVideoElement>(null), useRef<HTMLVideoElement>(null)];
+
+ useEffect(() => {
+ const currentVideoRef = videoRefs[activeVideo].current;
+ if (currentVideoRef) {
+      // Start playback and set a timer to switch
+      currentVideoRef.currentTime = 0; // Start from the beginning
+ currentVideoRef.play();
+
+ const timer = setTimeout(() => {
+        setActiveVideo((prev) => (prev === 0 ? 1 : 0)); // Switch to the next video
+ }, 10000); // 10 seconds
+
+ return () => clearTimeout(timer); // Clean up the timer
+ }
+ }, [activeVideo]); // Rerun effect when activeVideo changes
+
+ return (
     <section id="about" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -37,17 +60,26 @@ const About = () => (
                     </a>
                 </div>
                 {/* Right Content */}
-                <div className="relative">
-                    <img
-                        src="https://lh3.googleusercontent.com/p/AF1QipMR-CJa-HUn2WB8_8t_7z6_T5D-AmbIDWcbfN1i=s680-w680-h510-rw"
-                        alt="GREATHIRE Team"
-                        className="rounded-xl shadow-lg w-full transition-transform duration-700 ease-in-out hover:scale-105"
+                <div className="relative overflow-hidden rounded-xl shadow-lg w-full h-96">
+ {/* Adjust height as needed */}
+                    <video
+ ref={videoRefs[0]}
+ src={video1}
+ muted
+ className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${activeVideo === 0 ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                    <video
+ ref={videoRefs[1]}
+ src={video2}
+ muted
+ className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${activeVideo === 1 ? 'opacity-100' : 'opacity-0'}`}
                     />
                 </div>
                 {/* End Right Content */}
             </div>
         </div>
     </section>
-);
+ );
+};
 
 export default About;
