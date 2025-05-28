@@ -49,16 +49,16 @@ const services = [
 const contactInfo = [
     {
         icon: 'fas fa-map-marker-alt',
-        text: '5th Floor,Doc,Vasantha Bhavana Rd,Whitefields Kondapur,Hyderabad Telangana 500006',
+        text: '5th Floor,Doc,Vasantha Bhavana Rd,Whitefields Kondapur,Hyderabad Telangana - 500006',
         isAddress: true,
     },
     {
         icon: 'fas fa-phone-alt',
-        text: '+91-8328192093',
+        text: ' +91-8328192093, +91-6305059959',
     },
     {
         icon: 'fas fa-envelope',
-        text: 'hr@babde.tech',
+        text: 'sanketbabde@greathire.in',
     },
     {
         icon: 'fas fa-clock',
@@ -158,7 +158,7 @@ const Footer: React.FC = () => {
                                 key={icon + text}
                                 className={`flex items-${isAddress ? 'start' : 'center'}`}
                             >
-                                <i className={`${icon} text-blue-400 mr-3${isAddress ? ' mt-1' : ''}`}></i>
+                                <i className={`${icon} text-blue-400 mr-4${isAddress ? ' mt-1' : ''}`}></i>
                                 <span className="text-gray-400">{text}</span>
                             </li>
                         ))}
