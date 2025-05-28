@@ -184,14 +184,14 @@ const moveCarousel = (direction: 'left' | 'right') => {
   return (
     <div className="relative gallery  flex flex-col items-center justify-center">
       <ul
-        className="cards relative w-[14rem] h-[18rem] flex items-center overflow-visible"
+        className="cards relative w-[14rem] h-[20rem] flex items-center overflow-visible"
         style={{ perspective: 1000 }}
       >
         {reviews.map((review, i) => (
           <li
             key={i}
             ref={(el) => { cardsRef.current[i] = el; }}
-            className="w-[14rem] h-[18rem] rounded-lg bg-purple-500 text-white text-center flex flex-col items-center justify-center shadow-lg absolute top-0 left-0"
+            className="w-[16rem] h-[20rem] rounded-lg bg-purple-500 text-white text-center flex flex-col items-center justify-center shadow-lg absolute top-0 left-0"
             style={{
               backgroundImage: `url(${CardBgImg})`,
               backgroundSize: 'cover',
@@ -202,18 +202,22 @@ const moveCarousel = (direction: 'left' | 'right') => {
               lineHeight: 1.4,
               borderRadius: '0.8rem',
               cursor: 'default',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
-            <div>
-              <p className="text-sm italic text-white">"{review.text}"</p>
-            </div>
-            <div className="mt-4 font-semibold">{review.name}</div>
-            <div className="text-sm text-blue-100 mb-2">{review.title}</div>
-            {/* 5 Star Rating */}
-            <div className="flex justify-center mb-2">
-              {[...Array(5)].map((_, idx) => (
-                <FaStar key={idx} className="text-yellow-400 mx-0.5" />
-              ))}
+            <div className="flex flex-col items-center justify-center h-full w-full">
+              <p className="text-sm italic text-white mb-4 px-2">"{review.text}"</p>
+              <div className="mt-2 font-semibold">{review.name}</div>
+              <div className="text-sm text-blue-100 mb-1">{review.title}</div>
+              {/* 5 Star Rating */}
+              <div className="flex justify-center mb-2">
+                {[...Array(5)].map((_, idx) => (
+                  <FaStar key={idx} className="text-yellow-400 mx-0.5" />
+                ))}
+              </div>
             </div>
           </li>
         ))}
