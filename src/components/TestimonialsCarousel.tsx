@@ -1,6 +1,7 @@
 import React, {  useRef, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import CardBgImg from '../assets/White and Blue.png';
+import { FaStar } from 'react-icons/fa';
 
 interface Review {
   text: string;
@@ -190,7 +191,7 @@ const moveCarousel = (direction: 'left' | 'right') => {
           <li
             key={i}
             ref={(el) => { cardsRef.current[i] = el; }}
-            className="w-[14rem] h-[18rem] rounded-lg bg-purple-500 text-white text-center flex items-center justify-center shadow-lg absolute top-0 left-0"
+            className="w-[14rem] h-[18rem] rounded-lg bg-purple-500 text-white text-center flex flex-col items-center justify-center shadow-lg absolute top-0 left-0"
             style={{
               backgroundImage: `url(${CardBgImg})`,
               backgroundSize: 'cover',
@@ -205,8 +206,14 @@ const moveCarousel = (direction: 'left' | 'right') => {
           >
             <div>
               <p className="text-sm italic text-white">"{review.text}"</p>
-              <p className="text-white mt-2 font-semibold">{review.name}</p>
-              <p className="text-white text-xs">{review.title}</p>
+            </div>
+            <div className="mt-4 font-semibold">{review.name}</div>
+            <div className="text-sm text-blue-100 mb-2">{review.title}</div>
+            {/* 5 Star Rating */}
+            <div className="flex justify-center mb-2">
+              {[...Array(5)].map((_, idx) => (
+                <FaStar key={idx} className="text-yellow-400 mx-0.5" />
+              ))}
             </div>
           </li>
         ))}
