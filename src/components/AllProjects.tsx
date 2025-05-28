@@ -243,7 +243,7 @@ const TABS = [
         <div className="w-full max-w-2xl">
           {/* Desktop Tabs */}
           <div className="hidden sm:flex justify-center">
-            <div className="inline-flex bg-white rounded-lg shadow-sm p-1 w-full flex-wrap gap-2">
+           <div className="flex flex-row w-full gap-2">
           {TABS.map((tab) => (
             <button
               key={tab.key}
