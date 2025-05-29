@@ -13,7 +13,7 @@ const HeroSection = () => {
       className="pt-24 relative overflow-hidden"
       style={{
         backgroundImage:
-          "url('https://readdy.ai/api/search-image?query=Modern%20tech%20office%20with%20gradient%20blue%20background%2C%20soft%20lighting%2C%20minimalist%20design%2C%20abstract%20digital%20elements%2C%20professional%20workspace%20atmosphere%2C%20high-tech%20environment%20with%20subtle%20technology%20elements%2C%20clean%20and%20professional%20aesthetic&width=1440&height=600&seq=1&orientation=landscape')",
+          "url('https://graphicsfamily.com/wp-content/uploads/edd/2024/10/Background-Professional-3D-Minimalist-Office-Logo-Mockup-on-Room-Wall-scaled.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         height: "600px",
@@ -21,7 +21,7 @@ const HeroSection = () => {
     >
       <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-transparent" />
       <div className="container mx-auto px-6 relative z-10 h-full flex items-center">
-        <div className="max-w-2xl text-white">
+        <div className="max-w-2xl mt-30 text-white">
           <h1 className="text-4xl font-bold mb-4 leading-tight">
             GREATHIRE BY BABDE PVT.LTD
           </h1>
