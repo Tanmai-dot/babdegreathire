@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
+
 // import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import Header from './Header';
@@ -286,37 +288,46 @@ const TABS = [
       {/* Projects Grid */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => {
-              const cat = getCategoryStyles(project.category);
-              return (
-                <div
-                key={index}
-                className="bg-white rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:shadow-xl hover:-translate-y-2"
-                >
-                  <div className="h-64 overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover object-top"
-                      />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className={`${cat.bg} ${cat.text} text-xs font-medium px-2.5 py-0.5 rounded`}>
-                        {cat.label}
-                      </span>
-                      <span className="text-gray-500 text-sm">{project.date}</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-800 mb-2">{project.title}</h3>
-                    {project.description.split('\n\n').map((para, i) => (
-  <p className="text-gray-600 mb-4" key={i}>{para}</p>
-))}
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> */}
+<motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <AnimatePresence mode="wait">
+    {filteredProjects.map((project, index) => {
+      const cat = getCategoryStyles(project.category);
+      return (
+        <motion.div
+          layout
+          key={project.title || index}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="bg-white rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:shadow-xl hover:-translate-y-2"
+        >
+          <div className="h-64 overflow-hidden">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
+          <div className="p-6">
+            <div className="flex items-center justify-between mb-3">
+              <span className={`${cat.bg} ${cat.text} text-xs font-medium px-2.5 py-0.5 rounded`}>
+                {cat.label}
+              </span>
+              <span className="text-gray-500 text-sm">{project.date}</span>
+            </div>
+            <h3 className="text-xl font-bold text-gray-800 mb-2">{project.title}</h3>
+            {project.description.split('\n\n').map((para, i) => (
+              <p className="text-gray-600 mb-4" key={i}>{para}</p>
+            ))}
+          </div>
+        </motion.div>
+      );
+    })}
+  </AnimatePresence>
+</motion.div>
 
-                  </div>
-                </div>
-              );
-            })}
           </div>
 
           {/* Load More Button */}
@@ -338,7 +349,7 @@ const TABS = [
               </button>
             </div>
           )}
-        </div>
+        {/* </div> */}
       </section>
 
       <Footer />
