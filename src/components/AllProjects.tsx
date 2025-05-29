@@ -238,12 +238,12 @@ const TABS = [
       </section>
       {/* Filtering System (Responsive) */}
       <section className="py-8 bg-gray-50 sticky top-16 z-40 border-y border-gray-200 shadow-sm">
-        <div className="container mx-auto px-6">
-          <div className="flex justify-center">
-        <div className="w-full max-w-2xl">
+        <div className="container mx-auto pl-61 pr-61 ">
+          <div className="flex justify-center bg-gray-200 rounded-lg ">
+        <div className="w-full max-w-3xl ">
           {/* Desktop Tabs */}
-          <div className="hidden sm:flex justify-center">
-           <div className="flex flex-row w-full gap-2">
+          <div className="hidden sm:flex justify-center ">
+           <div className="flex flex-row w-full gap-2 justify-center">
           {TABS.map((tab) => (
             <button
               key={tab.key}
