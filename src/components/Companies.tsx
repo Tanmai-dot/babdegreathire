@@ -97,7 +97,7 @@ const bottomLogos = companyLogos.slice(half);
 function useScrollingCards(
     logos: typeof companyLogos,
     cardsPerRow: number,
-    interval = 3000
+    interval = 1500
 ) {
     const [startIdx, setStartIdx] = useState(0);
 
